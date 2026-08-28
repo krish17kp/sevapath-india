@@ -13,31 +13,40 @@ import type {
  * the check reports both values exactly as read and asks a human to resolve it.
  */
 
-/** Fields that must be readable before a Form 12 claim can be prepared. */
+/**
+ * Fields that must be readable before any claim can be prepared.
+ *
+ * The wording of every `why` is route-neutral on purpose. These checks run
+ * before the route is applied and the same observation is shown on both the
+ * Form 12 and the Form 10 journey, so naming one form here would contradict
+ * the route on the other — the exact wrong-form confusion this product exists
+ * to remove. Statements that genuinely belong to one form stay in that route's
+ * checklist, where the route is known.
+ */
 const REQUIRED_FIELDS: { kind: RecordKind; key: string; label: string; why: string }[] = [
   {
     kind: "ppo",
     key: "ppo_number",
     label: "PPO number",
-    why: "Form 12 asks for the PPO number of the pensioner."
+    why: "The PPO number identifies which pension order the claim is about."
   },
   {
     kind: "ppo",
     key: "pensioner_name",
     label: "Pensioner's name",
-    why: "Form 12 asks for the name of the pensioner on whose death family pension is claimed."
+    why: "The claim is for family pension on the death of this pensioner, so the name has to be readable."
   },
   {
     kind: "ppo",
     key: "spouse_name",
     label: "Name of the family pension claimant in the PPO",
-    why: "The Form 12 route depends on the claimant being named in the Pension Payment Order."
+    why: "Which route applies depends on whether the claimant is named in the Pension Payment Order."
   },
   {
     kind: "death_certificate",
     key: "date_of_death",
     label: "Date of death",
-    why: "Form 12 asks for the date of death, and family pension runs from the day after it."
+    why: "Family pension runs from the day after the date of death, so it has to be readable."
   },
   {
     kind: "death_certificate",
@@ -49,19 +58,19 @@ const REQUIRED_FIELDS: { kind: RecordKind; key: string; label: string; why: stri
     kind: "bank_proof",
     key: "account_holder_name",
     label: "Bank account holder's name",
-    why: "Form 12 asks for the account the family pension is to be credited to."
+    why: "Family pension is credited to a bank account, so the account holder's name has to be readable."
   },
   {
     kind: "bank_proof",
     key: "account_number",
     label: "Bank account number",
-    why: "Form 12 asks for the account number."
+    why: "Family pension is credited to a bank account, so the account number has to be readable."
   },
   {
     kind: "bank_proof",
     key: "ifsc",
     label: "IFSC",
-    why: "Form 12 asks for the IFS code."
+    why: "The IFS code identifies the branch the account is held at."
   }
 ];
 
@@ -115,7 +124,7 @@ function requiredFieldChecks(extraction: ExtractionResult): CheckObservation[] {
         id: "required_fields",
         label: "Required details are readable",
         status: "pass",
-        detail: `All ${REQUIRED_FIELDS.length} details Form 12 asks for could be read from the records.`
+        detail: `All ${REQUIRED_FIELDS.length} required details for this preparation route could be read from the records.`
       }
     ];
   }
@@ -243,7 +252,7 @@ function relationshipCheck(extraction: ExtractionResult): CheckObservation {
       label: "Relationship recorded in the PPO",
       status: "review",
       detail:
-        "The Pension Payment Order does not record the claimant's relationship to the pensioner as spouse. SevaPath's Form 12 walkthrough covers a surviving spouse named in the PPO.",
+        "The Pension Payment Order does not record the claimant's relationship to the pensioner as spouse. SevaPath's walkthrough covers a surviving spouse.",
       values,
       humanAction:
         "Check the Pension Payment Order with the Pension Disbursing Authority to confirm which family member is named."
@@ -270,9 +279,9 @@ function coAuthorisationCheck(extraction: ExtractionResult): CheckObservation {
     !explicitlyNegative &&
     /\b(?:co[- ]?)?authori[sz](?:ed|ation)\b/i.test(status);
 
-  // Only an affirmative reading supports the Form 12 route. Any other value —
+  // Only an affirmative reading is reported as a pass. Any other value —
   // including one that says family pension is *not* authorised — is sent for
-  // human review rather than reported as a pass.
+  // human review instead.
   if (!affirmativelyAuthorised) {
     return {
       id: "co_authorisation",
@@ -280,7 +289,7 @@ function coAuthorisationCheck(extraction: ExtractionResult): CheckObservation {
       status: "review",
       detail:
         status === null
-          ? "SevaPath could not read whether family pension is authorised in the Pension Payment Order. The Form 12 route depends on the claimant being named there."
+          ? "SevaPath could not read whether family pension is authorised in the Pension Payment Order. Which route applies depends on whether the claimant is named there."
           : `The Pension Payment Order does not record family pension as authorised. It reads "${status}".`,
       values,
       humanAction:
@@ -293,7 +302,7 @@ function coAuthorisationCheck(extraction: ExtractionResult): CheckObservation {
     label: "Family pension is authorised in the PPO",
     status: "pass",
     detail:
-      "The Pension Payment Order records family pension as authorised, which is what the Form 12 route rests on.",
+      "The Pension Payment Order records family pension as authorised.",
     values
   };
 }
