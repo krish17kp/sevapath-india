@@ -42,6 +42,23 @@ describe("exact matching records", () => {
       "pass"
     );
   });
+
+  it("does not treat an explicitly negative PPO authorisation as a pass", async () => {
+    const { extraction } = await checksFor("matched");
+    const ppo = extraction.records.find((record) => record.kind === "ppo");
+    const authorisation = ppo?.fields.find(
+      (field) => field.key === "co_authorisation_status"
+    );
+    if (!authorisation) throw new Error("Matched fixture has no PPO authorisation field");
+
+    authorisation.value = "Family pension not authorised";
+
+    const check = runChecks(extraction).find(
+      (observation) => observation.id === "co_authorisation"
+    );
+    expect(check?.status).toBe("review");
+    expect(check?.detail).toContain("not authorised");
+  });
 });
 
 describe("middle-initial name variation", () => {

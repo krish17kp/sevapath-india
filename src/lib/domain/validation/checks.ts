@@ -262,11 +262,18 @@ function relationshipCheck(extraction: ExtractionResult): CheckObservation {
 function coAuthorisationCheck(extraction: ExtractionResult): CheckObservation {
   const status = valueOf(extraction, "ppo", "co_authorisation_status");
   const values = [{ source: titleOf(extraction, "ppo"), value: status }];
+  const explicitlyNegative =
+    status !== null &&
+    /\b(?:not|no|never|denied|refused|unauthori[sz]ed)\b/i.test(status);
+  const affirmativelyAuthorised =
+    status !== null &&
+    !explicitlyNegative &&
+    /\b(?:co[- ]?)?authori[sz](?:ed|ation)\b/i.test(status);
 
   // Only an affirmative reading supports the Form 12 route. Any other value —
   // including one that says family pension is *not* authorised — is sent for
   // human review rather than reported as a pass.
-  if (status === null || !/co-?authoris|authoris/i.test(status)) {
+  if (!affirmativelyAuthorised) {
     return {
       id: "co_authorisation",
       label: "Family pension authorisation in the PPO",

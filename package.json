@@ -11,6 +11,7 @@
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:e2e": "node scripts/e2e-release.mjs",
     "test:watch": "vitest",
     "corpus:collect": "node rag-corpus/scripts/collect_public_sources.mjs",
     "corpus:validate": "node rag-corpus/scripts/validate_public_collection.mjs",

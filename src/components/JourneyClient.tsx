@@ -71,6 +71,7 @@ export function JourneyClient({ cases }: { cases: SyntheticCaseSummary[] }) {
   const [caseId, setCaseId] = useState(cases[0]?.id ?? "name_variation");
   const [result, setResult] = useState<AssessResponse | null>(null);
   const [submitted, setSubmitted] = useState<SubmitResponse | null>(null);
+  const [reviewAcknowledged, setReviewAcknowledged] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -89,6 +90,7 @@ export function JourneyClient({ cases }: { cases: SyntheticCaseSummary[] }) {
     runId.current += 1;
     setResult(null);
     setSubmitted(null);
+    setReviewAcknowledged(false);
     // The abandoned request will be discarded when it lands, so nothing is
     // waiting on it any more. Without this the run button could stay disabled.
     setPending(false);
@@ -103,6 +105,7 @@ export function JourneyClient({ cases }: { cases: SyntheticCaseSummary[] }) {
       setPending(true);
       setError(null);
       setSubmitted(null);
+      setReviewAcknowledged(false);
       try {
         const response = await fetch("/api/assess", {
           method: "POST",
@@ -201,6 +204,8 @@ export function JourneyClient({ cases }: { cases: SyntheticCaseSummary[] }) {
           steps={steps!}
           pending={pending}
           submitted={submitted}
+          reviewAcknowledged={reviewAcknowledged}
+          onReviewAcknowledged={setReviewAcknowledged}
           onSubmit={() => void submit()}
         />
       ) : null}
@@ -426,12 +431,16 @@ function ResultSteps({
   steps,
   pending,
   submitted,
+  reviewAcknowledged,
+  onReviewAcknowledged,
   onSubmit
 }: {
   result: AssessResponse;
   steps: ResultStepNumbers;
   pending: boolean;
   submitted: SubmitResponse | null;
+  reviewAcknowledged: boolean;
+  onReviewAcknowledged: (value: boolean) => void;
   onSubmit: () => void;
 }) {
   const { assessment, summaryText } = result;
@@ -587,11 +596,27 @@ function ResultSteps({
               government system. The receipt it produces is not valid anywhere.
             </p>
           </div>
+          {assessment.state === "review_required" ? (
+            <label className="review-acknowledgement">
+              <input
+                type="checkbox"
+                checked={reviewAcknowledged}
+                onChange={(event) => onReviewAcknowledged(event.target.checked)}
+              />
+              <span>
+                I understand that a person at the counter must review the
+                differences listed above before accepting a real claim.
+              </span>
+            </label>
+          ) : null}
           <div className="button-row">
             <button
               type="button"
               className="button-primary"
-              disabled={pending}
+              disabled={
+                pending ||
+                (assessment.state === "review_required" && !reviewAcknowledged)
+              }
               onClick={onSubmit}
             >
               {pending ? "Working…" : "Run the demonstration submission"}

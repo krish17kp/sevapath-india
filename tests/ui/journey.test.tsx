@@ -200,9 +200,15 @@ describe("mock submission", () => {
     render(<JourneyClient cases={CASES} />);
 
     await completeScopeAndRun(user);
+    const submitButton = await screen.findByRole("button", {
+      name: /run the demonstration submission/i
+    });
+    expect(submitButton).toBeDisabled();
     await user.click(
-      await screen.findByRole("button", { name: /run the demonstration submission/i })
+      screen.getByRole("checkbox", { name: /a person at the counter must review/i })
     );
+    expect(submitButton).toBeEnabled();
+    await user.click(submitButton);
 
     const receiptHeading = await screen.findByRole("heading", {
       name: /no claim has been submitted/i
