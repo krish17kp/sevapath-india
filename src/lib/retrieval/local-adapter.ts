@@ -307,6 +307,29 @@ export function routeAffinity(query: string): RouteAffinity | null {
  */
 const ROUTE_AFFINITY_BONUS = 3;
 
+/**
+ * True when this passage describes the route the citizen did *not* ask about.
+ *
+ * A score bonus alone could not guarantee the ordering. Where the other
+ * route's passage happens to share the query's wording the bonus is simply
+ * outbid: "PPO मध्ये पती/पत्नीचे नाव नोंदलेले नाही" says the spouse is *not*
+ * named in the PPO, but the Marathi Form 12 passage contains "पती किंवा
+ * पत्नीचे" while the Marathi Form 10 passage says "claimant", so the Form 12
+ * passage scored higher by more than the bonus and the answer opened with the
+ * wrong route.
+ *
+ * What a citizen reads first is decided by ordering, not by score, so the
+ * guarantee belongs in the comparator: a conflicting-route passage is sorted
+ * after everything else. It is still returned as supporting evidence — only
+ * held back — and passages marked `both` or `none` are untouched.
+ */
+function conflictsWithAffinity(chunk: IndexChunk, affinity: RouteAffinity | null): boolean {
+  if (affinity === null) return false;
+  const opposite: RouteAffinity =
+    affinity === "form12_pda" ? "form10_hoo" : "form12_pda";
+  return chunk.route === opposite;
+}
+
 interface ChunkScore {
   score: number;
   matchedTerms: number;
@@ -452,9 +475,14 @@ export class LocalRetrievalAdapter implements RetrievalAdapter {
           // "passport size photographs", and must not be answered from it.
           (entry.matchedTerms >= MINIMUM_MATCHED_TERMS || entry.matchedKeyword)
       )
-      // Ties break on chunk id so ordering is stable across runs.
-      .sort((left, right) =>
-        right.score - left.score || left.chunk.id.localeCompare(right.chunk.id)
+      // A passage for the route the citizen did not ask about never leads the
+      // answer. Ties break on chunk id so ordering is stable across runs.
+      .sort(
+        (left, right) =>
+          Number(conflictsWithAffinity(left.chunk, affinity)) -
+            Number(conflictsWithAffinity(right.chunk, affinity)) ||
+          right.score - left.score ||
+          left.chunk.id.localeCompare(right.chunk.id)
       );
 
     if (scored.length === 0) {
