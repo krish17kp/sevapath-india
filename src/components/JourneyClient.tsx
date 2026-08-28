@@ -10,6 +10,13 @@ import { StateBadge } from "./StateBadge";
 import { RecordCard } from "./RecordCard";
 import { CheckResults } from "./CheckList";
 import { GuidancePanel } from "./GuidancePanel";
+import {
+  IconAlert,
+  IconArrowRight,
+  IconCheck,
+  IconExternal,
+  IconQuestion
+} from "./Icons";
 
 interface SyntheticCaseSummary {
   id: string;
@@ -43,28 +50,53 @@ const IN_SCOPE_ANSWERS: ScopeAnswers = {
   familyPensionAlreadyStarted: false
 };
 
+/** The five stages a citizen moves through, shown as a progress rail. */
+const STAGES = ["Your situation", "Records", "Checks", "Your route", "Prepare"];
+
 /**
- * Assigns step numbers to the cards that actually render.
+ * How the two routes are presented, and where a citizen can read the original.
  *
- * Several cards are conditional — an unsupported scope has neither checklist
- * nor worksheet, and a blocked claim has no checklist — so hardcoded numerals
- * produced sequences like 1, 2, 3, 4, 7. The numbers are decorative
- * (`aria-hidden`), but telling a citizen to follow a "step 5" that is not on
- * the page is still a usability failure.
+ * Nothing here is inferred: the rule references are the same ones the
+ * deterministic checklist already cites, and the links are the official
+ * documents recorded in the source manifest.
  */
-function resultStepNumbers(assessment: FullAssessment) {
-  const unsupported = assessment.state === "unsupported_scenario";
-  const blocked = assessment.state === "blocked_missing_information";
-  const canPrepare = !unsupported && !blocked;
+const RULE_URL =
+  "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf";
 
-  let next = 4;
-  const findings = next++;
-  const checklist = canPrepare && assessment.checklist.length > 0 ? next++ : null;
-  const worksheet = canPrepare || blocked ? next++ : null;
-  return { findings, checklist, worksheet, guidance: next };
-}
+const ROUTE_BASIS = {
+  form12_pda: {
+    form: "Form 12",
+    rule: "Rule 79(2)(a)(ii)",
+    formUrl: "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
+    other:
+      "If your name were not in the Pension Payment Order, the route would instead be Form 10 to the Head of Office."
+  },
+  form10_hoo: {
+    form: "Form 10",
+    rule: "Rule 79(2)(b)(i)",
+    formUrl: "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
+    other:
+      "If your name were already in the Pension Payment Order, the route would instead be Form 12 to the Pension Disbursing Authority."
+  }
+} as const;
 
-type ResultStepNumbers = ReturnType<typeof resultStepNumbers>;
+/** Cards are shown clearest-first; the stored default still comes from props. */
+const CASE_ORDER = ["matched", "name_variation", "missing_death_date"];
+
+const CASE_TONE: Record<string, { tone: string; blurb: string }> = {
+  matched: {
+    tone: "ok",
+    blurb: "Best path for understanding the normal journey."
+  },
+  name_variation: {
+    tone: "review",
+    blurb: "Shows how SevaPath handles uncertainty safely."
+  },
+  missing_death_date: {
+    tone: "blocked",
+    blurb: "Shows how SevaPath identifies what needs attention."
+  }
+};
 
 export function JourneyClient({ cases }: { cases: SyntheticCaseSummary[] }) {
   const [scope, setScope] = useState<ScopeAnswers>(EMPTY_SCOPE);
@@ -157,10 +189,25 @@ export function JourneyClient({ cases }: { cases: SyntheticCaseSummary[] }) {
     }
   }
 
-  const steps = result ? resultStepNumbers(result.assessment) : null;
+  function startAgain() {
+    setScope(EMPTY_SCOPE);
+    setCaseId(cases[0]?.id ?? "name_variation");
+    invalidateRun();
+    document.getElementById("scope")?.scrollIntoView({ block: "start" });
+  }
+
+  const unsupported = result?.assessment.state === "unsupported_scenario";
+
+  // How far along the rail the citizen is. Purely presentational.
+  let completedStages = 0;
+  if (allAnswered) completedStages = 1;
+  if (result) completedStages = unsupported ? 3 : 4;
+  if (submitted) completedStages = 5;
 
   return (
     <>
+      <ProgressRail completed={completedStages} />
+
       <ScopeStep
         scope={scope}
         pending={pending}
@@ -173,8 +220,6 @@ export function JourneyClient({ cases }: { cases: SyntheticCaseSummary[] }) {
           invalidateRun();
         }}
       />
-
-      <ExplainerStep />
 
       <RecordsStep
         cases={cases}
@@ -193,7 +238,7 @@ export function JourneyClient({ cases }: { cases: SyntheticCaseSummary[] }) {
         <section className="card">
           <div className="notice notice-stop" role="alert">
             <h3>Something went wrong</h3>
-            <p>{error}</p>
+            <p style={{ marginBottom: 0 }}>{error}</p>
           </div>
         </section>
       ) : null}
@@ -201,28 +246,66 @@ export function JourneyClient({ cases }: { cases: SyntheticCaseSummary[] }) {
       {result ? (
         <ResultSteps
           result={result}
-          steps={steps!}
           pending={pending}
           submitted={submitted}
           reviewAcknowledged={reviewAcknowledged}
           onReviewAcknowledged={setReviewAcknowledged}
           onSubmit={() => void submit()}
+          onStartAgain={startAgain}
         />
       ) : null}
 
       <section className="card" id="guidance">
-        <div className="step-heading">
-          <span className="step-number" aria-hidden="true">
-            {steps ? steps.guidance : 4}
-          </span>
-          <h2>Ask about this journey</h2>
-        </div>
+        <h2>Questions people commonly have</h2>
         <p className="lede">
-          Answers are drawn only from the official documents SevaPath has
-          collected, and every answer shows the rule, form or page it came from.
+          Answers come only from the official documents SevaPath has collected,
+          and every answer shows the rule, form or page it came from.
         </p>
         <GuidancePanel />
       </section>
+    </>
+  );
+}
+
+function ProgressRail({ completed }: { completed: number }) {
+  const current = Math.min(completed, STAGES.length - 1);
+  const percent = Math.round((completed / STAGES.length) * 100);
+
+  return (
+    <>
+      {/* A narrow screen gets the compact form; the full rail needs real width. */}
+      <p className="progress-compact">
+        <span className="label">
+          Step {current + 1} of {STAGES.length} · {STAGES[current]}
+        </span>
+        <span className="track" aria-hidden="true">
+          <span className="fill" style={{ width: `${percent}%` }} />
+        </span>
+      </p>
+
+      <ol className="progress-rail" aria-label="Your progress through the journey">
+      {STAGES.map((stage, index) => {
+        const state =
+          index < completed ? "done" : index === completed ? "current" : "todo";
+        return (
+          <li
+            key={stage}
+            data-state={state}
+            {...(state === "current" ? { "aria-current": "step" as const } : {})}
+          >
+            <span className="pip" aria-hidden="true">
+              {state === "done" ? <IconCheck size={12} /> : index + 1}
+            </span>
+            <span>
+              {stage}
+              {state === "done" ? (
+                <span className="visually-hidden"> — done</span>
+              ) : null}
+            </span>
+          </li>
+        );
+      })}
+      </ol>
     </>
   );
 }
@@ -244,7 +327,7 @@ function ScopeStep({
         <span className="step-number" aria-hidden="true">
           1
         </span>
-        <h2>Is this the right walkthrough for you?</h2>
+        <h2>Your situation</h2>
       </div>
       <p className="lede">
         SevaPath walks through one journey only: a surviving spouse, already
@@ -277,60 +360,15 @@ function ScopeStep({
         </fieldset>
       ))}
 
-      <div className="button-row" style={{ marginTop: "1rem" }}>
+      <div className="button-row" style={{ marginTop: "1.15rem" }}>
         <button type="button" onClick={onUseExample}>
           Fill in the example answers
         </button>
       </div>
-      <p className="muted" style={{ marginTop: "0.6rem" }}>
+      <p className="muted" style={{ marginTop: "0.7rem", marginBottom: 0 }}>
         The example answers describe the journey this prototype demonstrates.
         Answer differently to see how SevaPath declines a case it has not
         verified.
-      </p>
-    </section>
-  );
-}
-
-function ExplainerStep() {
-  return (
-    <section className="card" id="explainer">
-      <div className="step-heading">
-        <span className="step-number" aria-hidden="true">
-          2
-        </span>
-        <h2>What the current journey looks like</h2>
-      </div>
-      <p>
-        When a pensioner dies, family pension does not start on its own. Someone
-        has to claim it. If the surviving spouse is already named in the Pension
-        Payment Order, the claim goes to the{" "}
-        <strong>Pension Disbursing Authority</strong> — in most cases the bank
-        branch that was paying the pension — on <strong>Form 12</strong>, with a
-        copy of the death certificate and a signed <strong>Format 9</strong>{" "}
-        undertaking.
-      </p>
-      <p>
-        The rule gives the Pension Disbursing Authority one month from receiving
-        that claim to start paying, and family pension is payable from the day
-        after the date of death.
-      </p>
-      <div className="notice notice-warn">
-        <h3>The trap this prototype exists to fix</h3>
-        <p>
-          The Department&rsquo;s own older FAQ still tells people to use{" "}
-          <strong>Form 14</strong>. Form 14 now sits under &ldquo;Archives&rdquo;
-          on the Pensioners&rsquo; Portal forms page. Following the FAQ means
-          filling in a form that is no longer the current one.
-        </p>
-        <p style={{ marginBottom: 0 }}>
-          SevaPath reads the 2021 Rules and the current forms list, and shows you
-          the source for every statement so you can check it yourself.
-        </p>
-      </div>
-      <p className="muted" style={{ marginBottom: 0 }}>
-        If your name is not in the Pension Payment Order, the route is Form 10 to
-        the Head of Office instead. Answer question 3 with &ldquo;No&rdquo; to
-        see that.
       </p>
     </section>
   );
@@ -354,65 +392,71 @@ function RecordsStep({
   result: AssessResponse | null;
 }) {
   const groupId = useId();
-  const active = cases.find((item) => item.id === caseId);
+  const ordered = [...cases].sort(
+    (left, right) => CASE_ORDER.indexOf(left.id) - CASE_ORDER.indexOf(right.id)
+  );
 
   return (
     <section className="card" id="records">
       <div className="step-heading">
         <span className="step-number" aria-hidden="true">
-          3
+          2
         </span>
-        <h2>Your three records</h2>
+        <h2>Choose an example case</h2>
       </div>
       <p className="lede">
-        SevaPath has three built-in records: a Pension Payment Order, a death
-        certificate, and a bank account proof. They are invented for this
-        demonstration. There is no upload, and SevaPath never asks you for a real
-        document or a real number.
+        SevaPath has three built-in sets of records: a Pension Payment Order, a
+        death certificate, and a bank account proof. They are invented for this
+        demonstration. There is no upload, and SevaPath never asks you for a
+        real document or a real number.
       </p>
 
-      <fieldset className="scope-question">
-        <legend id={groupId}>Choose a demonstration set</legend>
-        <div className="choice-row" role="radiogroup" aria-labelledby={groupId}>
-          {cases.map((item) => (
-            <label className="choice" key={item.id}>
-              <input
-                type="radio"
-                name="synthetic-case"
-                value={item.id}
-                checked={caseId === item.id}
-                disabled={pending}
-                onChange={() => onCaseChange(item.id)}
-              />
-              {item.label}
-            </label>
+      <fieldset>
+        <legend id={groupId} className="visually-hidden">
+          Choose an example case
+        </legend>
+        <div className="case-grid" role="radiogroup" aria-labelledby={groupId}>
+          {ordered.map((item) => (
+            <CaseCard
+              key={item.id}
+              item={item}
+              selected={caseId === item.id}
+              disabled={pending}
+              onSelect={() => onCaseChange(item.id)}
+            />
           ))}
         </div>
-        {active ? (
-          <p className="help" style={{ marginTop: "0.6rem" }}>
-            {active.description}
-          </p>
-        ) : null}
       </fieldset>
 
-      <div className="button-row" style={{ marginTop: "1rem" }}>
-        <button type="button" className="button-primary" disabled={!canRun} onClick={onRun}>
+      <div className="button-row" style={{ marginTop: "1.25rem" }}>
+        <button
+          type="button"
+          className="button-primary button-lg"
+          disabled={!canRun}
+          onClick={onRun}
+        >
           {pending ? "Checking…" : "Read the records and run the checks"}
+          {pending ? null : <IconArrowRight size={17} />}
         </button>
       </div>
       {!canRun && !pending ? (
-        <p className="muted" style={{ marginTop: "0.6rem" }}>
+        <p className="muted" style={{ marginTop: "0.7rem", marginBottom: 0 }}>
           Answer all four questions in step 1 first.
         </p>
       ) : null}
 
       {result && result.assessment.state !== "unsupported_scenario" ? (
-        <>
-          <h3 style={{ marginTop: "1.5rem" }}>What SevaPath read</h3>
+        <div className="reveal" style={{ marginTop: "1.75rem" }}>
+          <h3>Information we found in the records</h3>
+          <p className="muted" style={{ marginTop: "-0.3rem" }}>
+            Highlighted lines are the ones SevaPath compares across records.
+          </p>
           {result.assessment.extraction.notice ? (
             <div className="notice notice-info">
               <h3>How these were read</h3>
-              <p style={{ marginBottom: 0 }}>{result.assessment.extraction.notice}</p>
+              <p style={{ marginBottom: 0 }}>
+                {result.assessment.extraction.notice}
+              </p>
             </div>
           ) : null}
           <div className="record-grid">
@@ -420,28 +464,75 @@ function RecordsStep({
               <RecordCard key={record.kind} record={record} />
             ))}
           </div>
-        </>
+        </div>
       ) : null}
     </section>
   );
 }
 
+function CaseCard({
+  item,
+  selected,
+  disabled,
+  onSelect
+}: {
+  item: SyntheticCaseSummary;
+  selected: boolean;
+  disabled: boolean;
+  onSelect: () => void;
+}) {
+  const id = useId();
+  const tone = CASE_TONE[item.id] ?? { tone: "neutral", blurb: "" };
+  const Glyph =
+    tone.tone === "ok" ? IconCheck : tone.tone === "review" ? IconAlert : IconQuestion;
+
+  return (
+    <label className="case-card" data-tone={tone.tone}>
+      {/* The radio is named by the case title alone, so assistive technology
+          announces the choice before the explanation. */}
+      <input
+        type="radio"
+        name="synthetic-case"
+        value={item.id}
+        checked={selected}
+        disabled={disabled}
+        aria-labelledby={`${id}-title`}
+        aria-describedby={`${id}-note`}
+        onChange={onSelect}
+      />
+      <span className="case-icon" aria-hidden="true">
+        <Glyph size={19} />
+      </span>
+      <span className="case-title" id={`${id}-title`}>
+        {item.label}
+      </span>
+      <span className="case-note" id={`${id}-note`}>
+        {tone.blurb ? `${tone.blurb} ` : ""}
+        {item.description}
+      </span>
+      <span className="case-use" aria-hidden="true">
+        Use this example
+      </span>
+    </label>
+  );
+}
+
 function ResultSteps({
   result,
-  steps,
   pending,
   submitted,
   reviewAcknowledged,
   onReviewAcknowledged,
-  onSubmit
+  onSubmit,
+  onStartAgain
 }: {
   result: AssessResponse;
-  steps: ResultStepNumbers;
   pending: boolean;
   submitted: SubmitResponse | null;
   reviewAcknowledged: boolean;
   onReviewAcknowledged: (value: boolean) => void;
   onSubmit: () => void;
+  onStartAgain: () => void;
 }) {
   const { assessment, summaryText } = result;
   const unsupported = assessment.state === "unsupported_scenario";
@@ -450,112 +541,83 @@ function ResultSteps({
   // submission button. The server refuses both as well, but the interface
   // should not invite an action it knows will be declined.
   const canPrepare = !unsupported && !blocked;
+  const showChecklist = canPrepare && assessment.checklist.length > 0;
 
   return (
     <>
-      <section className="card" id="result">
-        <div className="step-heading">
-          <span className="step-number" aria-hidden="true">
-            {steps.findings}
-          </span>
-          <h2>What the checks found</h2>
-        </div>
-
-        <p>
-          <StateBadge state={assessment.state} />
-        </p>
-
-        {assessment.stateReasons.map((reason, index) => (
-          <p key={index}>{reason}</p>
-        ))}
-
-        {assessment.systemStates.includes("retrieval_unavailable") ? (
-          <div className="notice notice-info">
-            <h3>Guidance panel unavailable</h3>
-            <p style={{ marginBottom: 0 }}>
-              SevaPath could not reach its guidance corpus. The checks on this
-              page do not use it and are unaffected.
-            </p>
-          </div>
-        ) : null}
-
+      <div id="result" className="reveal">
         {unsupported ? (
-          <div className="notice notice-stop">
-            <h3>{assessment.route.label}</h3>
-            <p>{assessment.route.referral}</p>
-            <p style={{ marginBottom: 0 }}>
-              SevaPath does not guess at journeys it has not verified against
-              official sources.
+          <section className="card">
+            <div className="step-heading">
+              <span className="step-number" aria-hidden="true">
+                3
+              </span>
+              <h2>SevaPath cannot guide this case</h2>
+            </div>
+            <p>
+              <StateBadge state={assessment.state} />
             </p>
-          </div>
+            <div className="notice notice-stop">
+              <h3>{assessment.route.label}</h3>
+              <p>{assessment.route.referral}</p>
+              <p style={{ marginBottom: 0 }}>
+                SevaPath does not guess at journeys it has not verified against
+                official sources.
+              </p>
+            </div>
+            {assessment.stateReasons.map((reason, index) => (
+              <p className="muted" key={index} style={{ marginBottom: 0 }}>
+                {reason}
+              </p>
+            ))}
+          </section>
         ) : (
           <>
-            <div className="notice notice-ok">
-              <h3>Your route: {assessment.route.label}</h3>
-              <p>
-                <strong>Take your papers to:</strong> {assessment.route.recipient}
-              </p>
-              <p style={{ marginBottom: "0.35rem" }}>SevaPath chose this because:</p>
-              <ul style={{ marginTop: 0, marginBottom: 0 }}>
-                {assessment.route.reasons.map((reason) => (
-                  <li key={reason}>{reason}</li>
-                ))}
-              </ul>
-            </div>
+            <section className="card">
+              <div className="step-heading">
+                <span className="step-number" aria-hidden="true">
+                  3
+                </span>
+                <h2>What the checks found</h2>
+              </div>
 
-            <h3>Checks</h3>
-            <CheckResults checks={assessment.checks} />
+              <p>
+                <StateBadge state={assessment.state} />
+              </p>
+
+              {assessment.stateReasons.map((reason, index) => (
+                <p key={index}>{reason}</p>
+              ))}
+
+              {assessment.systemStates.includes("retrieval_unavailable") ? (
+                <div className="notice notice-info">
+                  <h3>Guidance panel unavailable</h3>
+                  <p style={{ marginBottom: 0 }}>
+                    SevaPath could not reach its guidance corpus. The checks on
+                    this page do not use it and are unaffected.
+                  </p>
+                </div>
+              ) : null}
+
+              <CheckResults checks={assessment.checks} />
+            </section>
+
+            <RouteCard assessment={assessment} />
           </>
         )}
-      </section>
+      </div>
 
-      {canPrepare && assessment.checklist.length > 0 ? (
-        <section className="card" id="checklist">
-          <div className="step-heading">
-            <span className="step-number" aria-hidden="true">
-              {steps.checklist}
-            </span>
-            <h2>
-              What to gather for{" "}
-              {assessment.route.route === "form10_hoo" ? "Form 10" : "Form 12"}
-            </h2>
-          </div>
-          <ul className="checklist">
-            {assessment.checklist.map((item) => (
-              <li key={item.id}>
-                <span
-                  className={`mark ${item.satisfied ? "mark-done" : ""}`}
-                  aria-hidden="true"
-                >
-                  {item.satisfied ? "✓" : ""}
-                </span>
-                <span className="item-body">
-                  <span className="item-label">
-                    {item.satisfied ? (
-                      <span className="visually-hidden">Already confirmed: </span>
-                    ) : (
-                      <span className="visually-hidden">Still to gather: </span>
-                    )}
-                    {item.label}
-                  </span>
-                  <br />
-                  {item.detail}
-                  <br />
-                  <span className="item-ref">Reference: {item.reference}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
+      {showChecklist ? (
+        <PrepareStep assessment={assessment} stepNumber={5} />
       ) : null}
 
       {blocked ? (
         <section className="card" id="summary">
           <div className="step-heading">
             <span className="step-number" aria-hidden="true">
-              {steps.worksheet}
+              5
             </span>
-            <h2>Your preparation worksheet</h2>
+            <h2>Preparation is on hold</h2>
           </div>
           <div className="notice notice-stop">
             <h3>Not ready to prepare yet</h3>
@@ -565,8 +627,8 @@ function ResultSteps({
               for a claim it could not read.
             </p>
             <p style={{ marginBottom: 0 }}>
-              Get a legible copy of the record named in step 4, then run the
-              checks again.
+              Get a legible copy of the record named in the checks above, then
+              run the checks again.
             </p>
           </div>
         </section>
@@ -574,26 +636,49 @@ function ResultSteps({
 
       {canPrepare ? (
         <section className="card" id="summary">
-          <div className="step-heading">
-            <span className="step-number" aria-hidden="true">
-              {steps.worksheet}
-            </span>
-            <h2>Your preparation worksheet</h2>
-          </div>
+          <h2>Your preparation summary</h2>
           <p className="lede">
             Print this or copy it out. It is a worksheet to take to the counter,
             not a form and not an application.
           </p>
+
+          <dl className="prep-summary">
+            <div className="prep-stat">
+              <dt>Route</dt>
+              <dd>{routeShortName(assessment.route.route)}</dd>
+            </div>
+            <div className="prep-stat">
+              <dt>Destination</dt>
+              <dd>{assessment.route.recipient}</dd>
+            </div>
+            <div className="prep-stat">
+              <dt>Checks passed</dt>
+              <dd>
+                {assessment.checks.filter((check) => check.status === "pass").length} of{" "}
+                {assessment.checks.length}
+              </dd>
+            </div>
+            <div className="prep-stat">
+              <dt>Human review</dt>
+              <dd>
+                {assessment.checks.some((check) => check.status === "review")
+                  ? "Needed before submitting"
+                  : "Not needed"}
+              </dd>
+            </div>
+          </dl>
+
           <div className="summary-block">
             <pre>{summaryText}</pre>
           </div>
 
-          <h3 style={{ marginTop: "1.5rem" }}>Demonstration submission</h3>
+          <h3 style={{ marginTop: "1.75rem" }}>Demonstration submission</h3>
           <div className="notice notice-warn">
             <p style={{ marginBottom: 0 }}>
-              The button below runs a <strong>demonstration only</strong>. Nothing
-              is sent to the Pensioners&rsquo; Portal, to a bank, or to any
-              government system. The receipt it produces is not valid anywhere.
+              The button below runs a <strong>demonstration only</strong>.
+              Nothing is sent to the Pensioners&rsquo; Portal, to a bank, or to
+              any government system. The receipt it produces is not valid
+              anywhere.
             </p>
           </div>
           {assessment.state === "review_required" ? (
@@ -624,7 +709,9 @@ function ResultSteps({
           </div>
 
           <div aria-live="polite">
-            {submitted ? <SubmissionResult submitted={submitted} /> : null}
+            {submitted ? (
+              <SubmissionResult submitted={submitted} onStartAgain={onStartAgain} />
+            ) : null}
           </div>
         </section>
       ) : null}
@@ -632,7 +719,220 @@ function ResultSteps({
   );
 }
 
-function SubmissionResult({ submitted }: { submitted: SubmitResponse }) {
+function routeShortName(route: string): string {
+  if (route === "form10_hoo") return ROUTE_BASIS.form10_hoo.form;
+  if (route === "form12_pda") return ROUTE_BASIS.form12_pda.form;
+  return "Not decided";
+}
+
+function RouteCard({ assessment }: { assessment: FullAssessment }) {
+  const basis =
+    assessment.route.route === "form10_hoo"
+      ? ROUTE_BASIS.form10_hoo
+      : ROUTE_BASIS.form12_pda;
+
+  return (
+    <section className="card">
+      <div className="step-heading">
+        <span className="step-number" aria-hidden="true">
+          4
+        </span>
+        <h2>Your route</h2>
+      </div>
+
+      {assessment.state === "blocked_missing_information" ? (
+        <div className="notice notice-stop">
+          <h3>Preparation is on hold</h3>
+          <p style={{ marginBottom: 0 }}>
+            The route below is the one the rules point to for the situation you
+            described, but a required detail could not be read from the records,
+            so SevaPath will not prepare the claim yet.
+          </p>
+        </div>
+      ) : null}
+
+      <div className="route-hero">
+        <span className="eyebrow">Your likely process</span>
+        <p className="route-form">{basis.form}</p>
+        <p className="route-full">{assessment.route.label}</p>
+
+        <dl className="route-facts">
+          <div className="route-fact">
+            <dt>Submit to</dt>
+            <dd>{assessment.route.recipient}</dd>
+          </div>
+          <div className="route-fact">
+            <dt>Official basis</dt>
+            <dd>
+              Central Civil Services (Pension) Rules, 2021 — {basis.rule}
+            </dd>
+          </div>
+        </dl>
+
+        <div className="route-why">
+          <h3>Why this route</h3>
+          <ul>
+            {assessment.route.reasons.map((reason) => (
+              <li key={reason}>{reason}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="route-basis">
+          <a
+            className="button"
+            href={basis.formUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get {basis.form}
+            <IconExternal size={14} />
+          </a>
+          <a
+            className="button"
+            href={RULE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View official source
+            <IconExternal size={14} />
+          </a>
+        </div>
+      </div>
+
+      <p className="route-alt">
+        <strong>The other route:</strong>
+        <span>{basis.other}</span>
+      </p>
+
+      <p className="muted" style={{ marginTop: "0.9rem", marginBottom: 0 }}>
+        SevaPath picked this with fixed verified rules, not a language model. It
+        has not decided your eligibility — the department does that.
+      </p>
+    </section>
+  );
+}
+
+/**
+ * The preparation checklist, split into what to bring, what is already
+ * confirmed, and what a person has to settle first.
+ *
+ * Every item is the validated checklist data; nothing is invented here. The
+ * grouping is the only thing this component adds.
+ */
+function PrepareStep({
+  assessment,
+  stepNumber
+}: {
+  assessment: FullAssessment;
+  stepNumber: number;
+}) {
+  const bring = assessment.checklist.filter((item) => !item.satisfied);
+  const confirmed = assessment.checklist.filter((item) => item.satisfied);
+  const resolve = assessment.checks.filter((check) => check.status === "review");
+  const routeName = assessment.route.route === "form10_hoo" ? "Form 10" : "Form 12";
+
+  return (
+    <section className="card" id="checklist">
+      <div className="step-heading">
+        <span className="step-number" aria-hidden="true">
+          {stepNumber}
+        </span>
+        <h2>What to gather for {routeName}</h2>
+      </div>
+      <p className="lede">
+        Before you visit {lowerFirst(assessment.route.recipient)}.
+      </p>
+
+      <div className="prep-group prep-bring">
+        <div className="prep-head">
+          <h3>Bring</h3>
+          <span className="prep-count">{bring.length} to prepare</span>
+        </div>
+        <ul className="checklist">
+          {bring.map((item) => (
+            <li key={item.id}>
+              <span className="mark" aria-hidden="true" />
+              <span className="item-body">
+                <span className="item-label">
+                  <span className="visually-hidden">Still to gather: </span>
+                  {item.label}
+                </span>
+                <span className="item-detail">{item.detail}</span>
+                <span className="item-ref">Source: {item.reference}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {confirmed.length > 0 ? (
+        <div className="prep-group prep-check">
+          <div className="prep-head">
+            <h3>Check</h3>
+            <span className="prep-count">
+              {confirmed.length} found in the records
+            </span>
+          </div>
+          <ul className="checklist">
+            {confirmed.map((item) => (
+              <li key={item.id}>
+                <span className="mark mark-done" aria-hidden="true">
+                  <IconCheck size={13} />
+                </span>
+                <span className="item-body">
+                  <span className="item-label">
+                    <span className="visually-hidden">Already confirmed: </span>
+                    {item.label}
+                  </span>
+                  <span className="item-detail">{item.detail}</span>
+                  <span className="item-ref">Source: {item.reference}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {resolve.length > 0 ? (
+        <div className="prep-group prep-resolve">
+          <div className="prep-head">
+            <h3>Resolve before visiting</h3>
+            <span className="prep-count">{resolve.length} needs a person</span>
+          </div>
+          <ul className="checklist">
+            {resolve.map((check) => (
+              <li key={check.id}>
+                <span className="mark mark-review" aria-hidden="true">
+                  <IconAlert size={12} />
+                </span>
+                <span className="item-body">
+                  <span className="item-label">{check.label}</span>
+                  <span className="item-detail">
+                    A person at the counter has to settle this. SevaPath has not
+                    changed any record.
+                  </span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
+function lowerFirst(value: string): string {
+  return value.charAt(0).toLowerCase() + value.slice(1);
+}
+
+function SubmissionResult({
+  submitted,
+  onStartAgain
+}: {
+  submitted: SubmitResponse;
+  onStartAgain: () => void;
+}) {
   if (!submitted.accepted) {
     return (
       <div className="notice notice-stop" style={{ marginTop: "1rem" }}>
@@ -645,19 +945,20 @@ function SubmissionResult({ submitted }: { submitted: SubmitResponse }) {
 
   const { receipt } = submitted;
   return (
-    <div className="receipt" style={{ marginTop: "1rem" }}>
+    <div className="receipt reveal" style={{ marginTop: "1.25rem" }}>
+      <p className="receipt-stamp">Demonstration receipt</p>
       <h3>{receipt.heading}</h3>
       <p className="reference">{receipt.reference}</p>
       <p className="muted">Produced {receipt.issuedAt}</p>
 
-      {receipt.statements.map((statement) => (
-        <p key={statement}>
-          <strong>{statement}</strong>
-        </p>
-      ))}
+      <ul className="receipt-statements">
+        {receipt.statements.map((statement) => (
+          <li key={statement}>{statement}</li>
+        ))}
+      </ul>
 
       <div className="two-column">
-        <div>
+        <div className="ledger">
           <h3>Confirmed from your records</h3>
           {receipt.received.length > 0 ? (
             <ul>
@@ -669,7 +970,7 @@ function SubmissionResult({ submitted }: { submitted: SubmitResponse }) {
             <p className="muted">Nothing could be confirmed from the records.</p>
           )}
         </div>
-        <div>
+        <div className="ledger">
           <h3>Still outstanding</h3>
           {receipt.outstanding.length > 0 ? (
             <ul>
@@ -683,12 +984,20 @@ function SubmissionResult({ submitted }: { submitted: SubmitResponse }) {
         </div>
       </div>
 
-      <h3>What would happen next in the real process</h3>
+      <h3 style={{ marginTop: "1.25rem" }}>
+        What would happen next in the real process
+      </h3>
       <ol>
         {receipt.whatHappensNext.map((step) => (
           <li key={step}>{step}</li>
         ))}
       </ol>
+
+      <div className="button-row" style={{ marginTop: "1.25rem" }}>
+        <button type="button" onClick={onStartAgain}>
+          Start another example
+        </button>
+      </div>
     </div>
   );
 }

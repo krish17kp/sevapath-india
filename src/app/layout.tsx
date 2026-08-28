@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Hackathon prototype — not an official government service. Synthetic
           demonstration records only. Nothing here is submitted anywhere.
         </p>
+        <SiteHeader />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );
