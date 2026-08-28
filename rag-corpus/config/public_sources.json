@@ -1,0 +1,101 @@
+{
+  "userAgent": "SevaPathResearchBot/1.0 (hackathon prototype; public official sources only)",
+  "minimumDelayMs": 1800,
+  "maximumBytes": 30000000,
+  "allowedHosts": [
+    "pensionersportal.gov.in",
+    "www.rbi.org.in",
+    "buildwhatmovesindia.com"
+  ],
+  "sources": [
+    {
+      "id": "PENSION-FORMS-LIST",
+      "title": "Pensioners' Portal application forms",
+      "issuer": "Department of Pension and Pensioners' Welfare",
+      "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
+      "kind": "html",
+      "corpusUse": "routing"
+    },
+    {
+      "id": "CCS2021-NOTIFICATION",
+      "title": "Central Civil Services (Pension) Rules, 2021",
+      "issuer": "Department of Pension and Pensioners' Welfare",
+      "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
+      "kind": "pdf",
+      "corpusUse": "primary-law"
+    },
+    {
+      "id": "CCS2021-COMPENDIUM",
+      "title": "CCS Pension Rules 2021 English compendium",
+      "issuer": "Department of Pension and Pensioners' Welfare",
+      "url": "https://pensionersportal.gov.in/Document/CSS_PensionRules_2021_Book_Eng.pdf",
+      "kind": "pdf",
+      "corpusUse": "cross-check"
+    },
+    {
+      "id": "FORM10-2021",
+      "title": "Form 10 family pension application",
+      "issuer": "Department of Pension and Pensioners' Welfare",
+      "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
+      "kind": "pdf",
+      "corpusUse": "alternative-route"
+    },
+    {
+      "id": "FORM12-2021",
+      "title": "Form 12 family pension commencement claim",
+      "issuer": "Department of Pension and Pensioners' Welfare",
+      "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
+      "kind": "pdf",
+      "corpusUse": "primary-route"
+    },
+    {
+      "id": "FORMAT9-2021",
+      "title": "Format 9 excess-payment undertaking",
+      "issuer": "Department of Pension and Pensioners' Welfare",
+      "url": "https://pensionersportal.gov.in/Forms/pension_new_format/Format9.pdf",
+      "kind": "pdf",
+      "corpusUse": "primary-route"
+    },
+    {
+      "id": "FAQ-CIVIL-2018",
+      "title": "Frequently Asked Questions for Central Civil Pensioners",
+      "issuer": "Department of Pension and Pensioners' Welfare",
+      "url": "https://pensionersportal.gov.in/FAQ_Civil.pdf",
+      "kind": "pdf",
+      "corpusUse": "background-only"
+    },
+    {
+      "id": "PENSIONER-GUIDELINES",
+      "title": "Guidelines for pensioners",
+      "issuer": "Department of Pension and Pensioners' Welfare",
+      "url": "https://pensionersportal.gov.in/guidelines.aspx",
+      "kind": "html",
+      "corpusUse": "guidance"
+    },
+    {
+      "id": "RBI2026-MD",
+      "title": "Reserve Bank of India (Government Pension Payment) Directions, 2026",
+      "issuer": "Reserve Bank of India",
+      "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
+      "kind": "html",
+      "corpusUse": "bank-direction"
+    },
+    {
+      "id": "PORTAL-TERMS",
+      "title": "Pensioners' Portal terms of use",
+      "issuer": "Department of Pension and Pensioners' Welfare",
+      "url": "https://pensionersportal.gov.in/disclaimer.aspx",
+      "kind": "html",
+      "corpusUse": "rights-policy"
+    },
+    {
+      "id": "HACKATHON-BRIEF",
+      "title": "Build What Moves India builder brief",
+      "issuer": "Build What Moves India",
+      "url": "https://buildwhatmovesindia.com/brief",
+      "kind": "html",
+      "corpusUse": "project-policy"
+    }
+  ]
+}
+

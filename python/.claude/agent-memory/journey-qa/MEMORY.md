@@ -1,0 +1,2 @@
+- [SevaPath journey P0/P1 findings](project_sevapath_journey_p0.md) — stale-state race in JourneyClient radios while pending; unsupported-scope record leak; step-number skips
+- [Playwright scratch-from-/tmp technique](feedback_playwright_scratch_from_tmp.md) — absolute node_modules import path for /tmp scripts; pytest needs cwd=python/

@@ -1,0 +1,47 @@
+{
+  "name": "sevapath",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SevaPath - hackathon prototype guiding a surviving spouse through the Central Civil family pension start journey. Not an official government service.",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "corpus:collect": "node rag-corpus/scripts/collect_public_sources.mjs",
+    "corpus:validate": "node rag-corpus/scripts/validate_public_collection.mjs",
+    "corpus:index": "node rag-corpus/scripts/build_local_index.mjs",
+    "corpus:eval": "vitest run tests/retrieval/retrieval_eval.test.ts",
+    "vertex:upload": "python3 rag-corpus/scripts/vertex_upload.py"
+  },
+  "engines": {
+    "node": ">=20.11"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.121.0",
+    "next": "^16.3.3",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.6",
+    "@types/node": "^26.4.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@vitejs/plugin-react": "^6.1.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.3",
+    "jsdom": "^30.0.1",
+    "pdfjs-dist": "^6.2.108",
+    "playwright": "^1.62.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.11"
+  }
+}

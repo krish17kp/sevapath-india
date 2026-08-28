@@ -1,0 +1,6 @@
+# SevaPath cloud retrieval sidecar.
+# Only needed for the Vertex AI RAG adapter. The local adapter, the web app,
+# and the whole citizen journey run without any of this.
+google-adk==2.8.0
+google-cloud-aiplatform==1.165.1
+pandas>=2.0
