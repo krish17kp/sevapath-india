@@ -1,5 +1,5 @@
 import {
-  INSUFFICIENT_EVIDENCE_ANSWER,
+  insufficientEvidenceAnswer,
   type Citation,
   type RetrievalAdapter,
   type RetrievalResponse,
@@ -129,7 +129,7 @@ export class VertexRetrievalAdapter implements RetrievalAdapter {
     if (payload.outcome === "insufficient_evidence") {
       return {
         outcome: "insufficient_evidence",
-        answer: INSUFFICIENT_EVIDENCE_ANSWER,
+        answer: insufficientEvidenceAnswer(query),
         passages: [],
         citations: [],
         adapter: this.name
@@ -154,7 +154,7 @@ export class VertexRetrievalAdapter implements RetrievalAdapter {
     if (passages.length === 0) {
       return {
         outcome: "insufficient_evidence",
-        answer: INSUFFICIENT_EVIDENCE_ANSWER,
+        answer: insufficientEvidenceAnswer(query),
         passages: [],
         citations: [],
         adapter: this.name

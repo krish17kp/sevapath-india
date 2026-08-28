@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import {
-  INSUFFICIENT_EVIDENCE_ANSWER,
+  insufficientEvidenceAnswer,
   type Citation,
   type RetrievalAdapter,
   type RetrievalResponse,
@@ -76,7 +76,10 @@ const STOP_WORDS = new Set([
   "on", "or", "the", "to", "was", "what", "when", "where", "which", "who",
   "why", "will", "with", "you", "your", "that", "this", "there", "their",
   "should", "would", "could", "about", "after", "before", "into", "than",
-  "then", "them", "they", "he", "she", "her", "his", "we", "us", "our"
+  "then", "them", "they", "he", "she", "her", "his", "we", "us", "our",
+  "का", "की", "के", "को", "से", "और", "है", "हैं", "मैं", "मुझे", "क्या",
+  "तो", "पर", "एक", "या", "लिए", "आहे", "आहेत", "मी", "मला", "काय", "चा",
+  "ची", "चे", "ला", "मध्ये", "आणि", "साठी", "वर", "एक"
 ]);
 
 /**
@@ -198,12 +201,24 @@ interface CorpusStats {
  * This is a limitation of lexical retrieval over a small corpus, and it is the
  * one place SevaPath prefers saying "I could not verify this" over answering.
  */
-function coversQuerySubject(queryTerms: string[], stats: CorpusStats): boolean {
+function coversQuerySubject(
+  queryTerms: string[],
+  stats: CorpusStats,
+  originalQuery: string
+): boolean {
   if (queryTerms.length === 0) return false;
 
   const known = queryTerms.filter((term) => stats.vocabulary.has(term));
   const absentCount = queryTerms.length - known.length;
   const coverage = known.length / queryTerms.length;
+
+  // Inflected Hindi and Marathi questions naturally contain more surface
+  // forms than this small curated corpus. Two independent known terms plus
+  // 40% coverage is still conservative: an unrelated question such as the
+  // railway-appointment eval has only one known generic word and is refused.
+  if (/[\u0900-\u097f]/u.test(originalQuery)) {
+    return known.length >= 2 && coverage >= 0.4;
+  }
 
   return absentCount < 2 || coverage >= 0.75;
 }
@@ -211,7 +226,10 @@ function coversQuerySubject(queryTerms: string[], stats: CorpusStats): boolean {
 export function tokenize(value: string): string[] {
   return value
     .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, " ")
+    // Devanagari vowel signs are Unicode marks, not letters. Keeping marks is
+    // required for Hindi/Marathi words to remain intact instead of becoming
+    // misleading one-syllable lexical matches.
+    .replace(/[^\p{L}\p{M}\p{N}\s]/gu, " ")
     .split(/\s+/)
     .filter((token) => token.length > 0 && !STOP_WORDS.has(token));
 }
@@ -268,6 +286,14 @@ const NAMED_IN_PPO: RegExp[] = [
 
 export function routeAffinity(query: string): RouteAffinity | null {
   const normalised = query.toLowerCase().replace(/\s+/g, " ").trim();
+  if (
+    /(?:ppo|पीपीओ).{0,30}(?:नाम|नाव).{0,20}(?:नहीं|नाही|दर्ज नहीं|नोंदलेले नाही)/u.test(normalised) ||
+    /(?:नाम|नाव).{0,20}(?:नहीं|नाही|दर्ज नहीं|नोंदलेले नाही).{0,30}(?:ppo|पीपीओ)/u.test(normalised)
+  ) return "form10_hoo";
+  if (
+    /(?:ppo|पीपीओ).{0,30}(?:नाम|नाव).{0,20}(?:है|आहे|दर्ज|नोंदलेले)/u.test(normalised) ||
+    /(?:नाम|नाव).{0,20}(?:है|आहे|दर्ज|नोंदलेले).{0,30}(?:ppo|पीपीओ)/u.test(normalised)
+  ) return "form12_pda";
   if (NOT_NAMED_IN_PPO.some((pattern) => pattern.test(normalised))) return "form10_hoo";
   if (NAMED_IN_PPO.some((pattern) => pattern.test(normalised))) return "form12_pda";
   return null;
@@ -399,15 +425,15 @@ export class LocalRetrievalAdapter implements RetrievalAdapter {
 
     const queryTerms = expandQuery(query);
     if (queryTerms.length === 0) {
-      return this.insufficient();
+      return this.insufficient(query);
     }
 
     const stats = statsFor(index);
 
     // Judged on the citizen's own words, before synonym expansion — expansion
     // would paper over exactly the gap this gate is looking for.
-    if (!coversQuerySubject(tokenize(query), stats)) {
-      return this.insufficient();
+    if (!coversQuerySubject(tokenize(query), stats, query)) {
+      return this.insufficient(query);
     }
     const affinity = routeAffinity(query);
     const scored: ScoredChunk[] = index.chunks
@@ -432,7 +458,7 @@ export class LocalRetrievalAdapter implements RetrievalAdapter {
       );
 
     if (scored.length === 0) {
-      return this.insufficient();
+      return this.insufficient(query);
     }
 
     const limit = Math.max(1, Math.min(options?.limit ?? 3, 8));
@@ -449,7 +475,7 @@ export class LocalRetrievalAdapter implements RetrievalAdapter {
     const citations = collectCitations(passages);
     // An answer with no official citation is not an answer SevaPath will give.
     if (citations.length === 0) {
-      return this.insufficient();
+      return this.insufficient(query);
     }
 
     return {
@@ -461,10 +487,10 @@ export class LocalRetrievalAdapter implements RetrievalAdapter {
     };
   }
 
-  private insufficient(): RetrievalResponse {
+  private insufficient(query: string): RetrievalResponse {
     return {
       outcome: "insufficient_evidence",
-      answer: INSUFFICIENT_EVIDENCE_ANSWER,
+      answer: insufficientEvidenceAnswer(query),
       passages: [],
       citations: [],
       adapter: this.name

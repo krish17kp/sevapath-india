@@ -18,7 +18,7 @@ sources:
     issuer: Department of Pension and Pensioners' Welfare
     title: "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))"
     url: https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf
-    accessed: 2026-08-27
+    accessed: 2026-08-28
 ---
 
 ## Where Rule 79 sits

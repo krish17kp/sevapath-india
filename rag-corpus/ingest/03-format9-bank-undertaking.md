@@ -17,13 +17,13 @@ sources:
     issuer: Department of Pension and Pensioners' Welfare
     title: "Format 9 — Undertaking (refund of excess payment) to the pension disbursing bank"
     url: https://pensionersportal.gov.in/Forms/pension_new_format/Format9.pdf
-    accessed: 2026-08-27
+    accessed: 2026-08-28
   RULE79:
     sourceId: CCS2021-NOTIFICATION
     issuer: Department of Pension and Pensioners' Welfare
     title: "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))"
     url: https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf
-    accessed: 2026-08-27
+    accessed: 2026-08-28
 ---
 
 ## What Format 9 is

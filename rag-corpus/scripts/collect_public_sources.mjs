@@ -1,10 +1,20 @@
 #!/usr/bin/env node
 
-import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
+import {
+  assertSourceProvenance,
+  extractPdfPages,
+  extractTitle,
+  normalizeText,
+  parseWildcardRobots,
+  safeName,
+  sha256,
+  stripHtml,
+  validatePdf
+} from "./collection_utils.mjs";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const corpusRoot = path.resolve(scriptDir, "..");
@@ -13,11 +23,19 @@ const outputDir = path.join(corpusRoot, "raw_sources_auto");
 const manifestPath = path.join(outputDir, "collection_manifest.json");
 
 const config = JSON.parse(await readFile(configPath, "utf8"));
+const previousManifest = await readFile(manifestPath, "utf8")
+  .then((value) => JSON.parse(value))
+  .catch(() => ({ results: [] }));
+const previousById = new Map(previousManifest.results.map((item) => [item.id, item]));
 const requestedId = valueAfter("--source-id");
 const force = process.argv.includes("--force");
+const configuredSources = config.sources.map((source) => ({
+  ...source,
+  provenance: config.provenance?.[source.id]
+}));
 const selected = requestedId
-  ? config.sources.filter((source) => source.id === requestedId)
-  : config.sources;
+  ? configuredSources.filter((source) => source.id === requestedId)
+  : configuredSources;
 
 if (requestedId && selected.length !== 1) {
   throw new Error(`Unknown --source-id: ${requestedId}`);
@@ -70,12 +88,16 @@ try {
       const collected = source.kind === "pdf"
         ? await collectPdf(source)
         : await collectHtml(source);
+      const previous = previousById.get(source.id);
 
       results.push({
         ...baseResult,
         status: "success",
         robots,
         collectedAt: new Date().toISOString(),
+        previousSha256: previous?.sha256 ?? null,
+        contentChanged: previous ? previous.sha256 !== collected.sha256 : null,
+        duplicateOfPrevious: previous ? previous.sha256 === collected.sha256 : false,
         ...collected
       });
     } catch (error) {
@@ -115,12 +137,19 @@ async function collectPdf(source) {
   if (bytes.length > config.maximumBytes) {
     throw new Error(`PDF exceeds maximumBytes: ${bytes.length}`);
   }
-  if (!bytes.subarray(0, 5).equals(Buffer.from("%PDF-"))) {
-    throw new Error(`Response is not a PDF; content-type=${contentType}`);
+  validatePdf(bytes, contentType);
+  const extraction = await extractPdfPages(bytes);
+  if (extraction.likelyScanned) {
+    throw new Error(
+      `PDF appears scanned (${extraction.nonEmptyPages}/${extraction.pageCount} text pages); OCR review is required`
+    );
   }
 
-  const filename = `${safeName(source.id)}.pdf`;
+  const base = safeName(source.id);
+  const filename = `${base}.pdf`;
+  const pagesFile = `${base}.pages.txt`;
   await writeFile(path.join(outputDir, filename), bytes);
+  await writeFile(path.join(outputDir, pagesFile), extraction.text, "utf8");
 
   return {
     method: "direct-http-pdf",
@@ -129,7 +158,12 @@ async function collectPdf(source) {
     contentType,
     bytes: bytes.length,
     sha256: sha256(bytes),
-    files: [filename]
+    pageCount: extraction.pageCount,
+    extractedTextCharacters: extraction.textCharacters,
+    extractedTextSha256: sha256(Buffer.from(extraction.text, "utf8")),
+    extractionMethod: "pdfjs-page-boundaries",
+    ocrUsed: false,
+    files: [filename, pagesFile]
   };
 }
 
@@ -229,28 +263,42 @@ async function saveHtmlResult(source, data) {
 }
 
 async function fetchWithLimits(url) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 45000);
-  try {
-    const response = await fetch(url, {
-      redirect: "follow",
-      signal: controller.signal,
-      headers: {
-        "user-agent": config.userAgent,
-        accept: "text/html,application/pdf;q=0.9,*/*;q=0.5"
+  const attempts = Number(config.maximumRetries ?? 2) + 1;
+  let lastError;
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 45000);
+    try {
+      const response = await fetch(url, {
+        redirect: "follow",
+        signal: controller.signal,
+        headers: {
+          "user-agent": config.userAgent,
+          accept: "text/html,application/pdf;q=0.9,*/*;q=0.5"
+        }
+      });
+      if (!response.ok) {
+        const retryable = response.status === 429 || response.status >= 500;
+        if (!retryable || attempt === attempts - 1) {
+          throw new Error(`HTTP ${response.status} ${response.statusText}`);
+        }
+        lastError = new Error(`HTTP ${response.status} ${response.statusText}`);
+      } else {
+        const declaredLength = Number(response.headers.get("content-length") || 0);
+        if (declaredLength > config.maximumBytes) {
+          throw new Error(`Response exceeds maximumBytes: ${declaredLength}`);
+        }
+        return response;
       }
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status} ${response.statusText}`);
+    } catch (error) {
+      lastError = error;
+      if (attempt === attempts - 1) throw error;
+    } finally {
+      clearTimeout(timeout);
     }
-    const declaredLength = Number(response.headers.get("content-length") || 0);
-    if (declaredLength > config.maximumBytes) {
-      throw new Error(`Response exceeds maximumBytes: ${declaredLength}`);
-    }
-    return response;
-  } finally {
-    clearTimeout(timeout);
+    await sleep(Number(config.retryBaseDelayMs ?? 800) * 2 ** attempt);
   }
+  throw lastError;
 }
 
 async function checkRobots(urlString) {
@@ -288,29 +336,8 @@ async function checkRobots(urlString) {
   }
 }
 
-function parseWildcardRobots(content) {
-  const rules = [];
-  let applies = false;
-  for (const rawLine of content.split(/\r?\n/)) {
-    const line = rawLine.replace(/#.*$/, "").trim();
-    if (!line) continue;
-    const separator = line.indexOf(":");
-    if (separator < 0) continue;
-    const key = line.slice(0, separator).trim().toLowerCase();
-    const value = line.slice(separator + 1).trim();
-    if (key === "user-agent") {
-      applies = value === "*";
-    } else if (key === "disallow" && applies) {
-      rules.push(value);
-    }
-  }
-  return rules;
-}
-
 function assertAllowedSource(source) {
-  if (!source.id || !source.url || !["html", "pdf"].includes(source.kind)) {
-    throw new Error(`Invalid source configuration: ${JSON.stringify(source)}`);
-  }
+  assertSourceProvenance(source);
   assertAllowedUrl(source.url);
 }
 
@@ -325,49 +352,19 @@ function assertAllowedUrl(urlString) {
 }
 
 async function writeManifest(items) {
+  const merged = requestedId
+    ? configuredSources
+        .map((source) => items.find((item) => item.id === source.id) ?? previousById.get(source.id))
+        .filter(Boolean)
+    : items;
   const manifest = {
     schemaVersion: 1,
     generatedAt: new Date().toISOString(),
     configPath: path.relative(corpusRoot, configPath),
     force,
-    results: items
+    results: merged
   };
   await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
-}
-
-function stripHtml(html) {
-  return html
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
-    .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&lt;/gi, "<")
-    .replace(/&gt;/gi, ">")
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;/gi, "'");
-}
-
-function extractTitle(html) {
-  const match = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
-  return match ? normalizeText(stripHtml(match[1])) : "";
-}
-
-function normalizeText(text) {
-  return text
-    .replace(/\r/g, "")
-    .replace(/[ \t]+/g, " ")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
-}
-
-function sha256(buffer) {
-  return createHash("sha256").update(buffer).digest("hex");
-}
-
-function safeName(value) {
-  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
 function valueAfter(flag) {

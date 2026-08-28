@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "briefCount": 10,
-  "chunkCount": 43,
+  "briefCount": 16,
+  "chunkCount": 57,
   "briefs": [
     {
       "id": "form12-pda-route",
@@ -25,21 +25,21 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "RULE79": {
           "sourceId": "CCS2021-NOTIFICATION",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "FORMSLIST": {
           "sourceId": "PENSION-FORMS-LIST",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Downloads: Application/Claim Forms",
           "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         }
       }
     },
@@ -65,21 +65,21 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 10 — Application to the Head of Office for Family Pension on Death of a Government Servant or Pensioner or on Death or Ineligibility of a Family Pensioner or when a Government Servant or Pensioner or Family Pensioner goes missing",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "RULE79": {
           "sourceId": "CCS2021-NOTIFICATION",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "FORMSLIST": {
           "sourceId": "PENSION-FORMS-LIST",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Downloads: Application/Claim Forms",
           "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         }
       }
     },
@@ -104,14 +104,14 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Format 9 — Undertaking (refund of excess payment) to the pension disbursing bank",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_format/Format9.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "RULE79": {
           "sourceId": "CCS2021-NOTIFICATION",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         }
       }
     },
@@ -137,7 +137,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         }
       }
     },
@@ -163,21 +163,21 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Downloads: Application/Claim Forms",
           "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "FAQ2018": {
           "sourceId": "FAQ-CIVIL-2018",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Frequently Asked Questions (FAQs) on Pension Policy Issues — Central Civil Pensioners",
           "url": "https://pensionersportal.gov.in/FAQ_Civil.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "RULE79": {
           "sourceId": "CCS2021-NOTIFICATION",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         }
       }
     },
@@ -205,7 +205,7 @@
           "issuer": "Reserve Bank of India",
           "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026 (Updated as on June 24, 2026)",
           "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         }
       }
     },
@@ -232,14 +232,14 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "RULE79": {
           "sourceId": "CCS2021-NOTIFICATION",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         }
       }
     },
@@ -265,21 +265,21 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 10 — Application to the Head of Office for Family Pension on Death of a Government Servant or Pensioner or on Death or Ineligibility of a Family Pensioner or when a Government Servant or Pensioner or Family Pensioner goes missing",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "RULE79": {
           "sourceId": "CCS2021-NOTIFICATION",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "GUIDELINES": {
           "sourceId": "PENSIONER-GUIDELINES",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Guidelines for Pensioners",
           "url": "https://pensionersportal.gov.in/guidelines.aspx",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         }
       }
     },
@@ -309,21 +309,21 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "PORTALTERMS": {
           "sourceId": "PORTAL-TERMS",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Terms of Use / Disclaimer — Pensioners' Portal",
           "url": "https://pensionersportal.gov.in/disclaimer.aspx",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "BRIEF": {
           "sourceId": "HACKATHON-BRIEF",
           "issuer": "Build What Moves India",
           "title": "Builder brief — Build What Moves India",
           "url": "https://buildwhatmovesindia.com/brief",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         }
       }
     },
@@ -348,21 +348,201 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "FORMSLIST": {
           "sourceId": "PENSION-FORMS-LIST",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Downloads: Application/Claim Forms",
           "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
         },
         "FAQ2018": {
           "sourceId": "FAQ-CIVIL-2018",
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Frequently Asked Questions (FAQs) on Pension Policy Issues — Central Civil Pensioners",
           "url": "https://pensionersportal.gov.in/FAQ_Civil.pdf",
-          "accessed": "2026-08-27"
+          "accessed": "2026-08-28"
+        }
+      }
+    },
+    {
+      "id": "form12-route-hi-mr",
+      "file": "ingest/11-form12-route-hi-mr.md",
+      "title": "Form 12 route — checked guidance in Hindi and Marathi",
+      "topic": "primary-route",
+      "route": "form12_pda",
+      "status": "current",
+      "keywords": [
+        "पीपीओ में नाम",
+        "PPO में नाम",
+        "फॉर्म 12",
+        "पेंशन वितरण प्राधिकारी",
+        "पीपीओमध्ये नाव",
+        "PPO मध्ये नाव",
+        "फॉर्म १२",
+        "निवृत्तिवेतन वितरण प्राधिकरण"
+      ],
+      "sources": {
+        "RULE79": {
+          "sourceId": "CCS2021-NOTIFICATION",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Central Civil Services (Pension) Rules, 2021",
+          "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
+          "accessed": "2026-08-28"
+        },
+        "FORM12": {
+          "sourceId": "FORM12-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 12 — Application to Pension Disbursing Authority for commencement of family pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
+          "accessed": "2026-08-28"
+        }
+      }
+    },
+    {
+      "id": "form10-route-hi-mr",
+      "file": "ingest/12-form10-route-hi-mr.md",
+      "title": "Form 10 route — checked guidance in Hindi and Marathi",
+      "topic": "alternative-route",
+      "route": "form10_hoo",
+      "status": "current",
+      "keywords": [
+        "PPO में नाम नहीं",
+        "पीपीओ में नाम नहीं",
+        "फॉर्म 10",
+        "कार्यालय प्रमुख",
+        "PPO मध्ये नाव नाही",
+        "पीपीओमध्ये नाव नाही",
+        "फॉर्म १०",
+        "कार्यालय प्रमुख"
+      ],
+      "sources": {
+        "RULE79": {
+          "sourceId": "CCS2021-NOTIFICATION",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Central Civil Services (Pension) Rules, 2021",
+          "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
+          "accessed": "2026-08-28"
+        },
+        "FORM10": {
+          "sourceId": "FORM10-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 10 — Application to the Head of Office for Family Pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
+          "accessed": "2026-08-28"
+        }
+      }
+    },
+    {
+      "id": "form14-archived-hi-mr",
+      "file": "ingest/13-form14-archived-hi-mr.md",
+      "title": "Form 14 archived warning — checked guidance in Hindi and Marathi",
+      "topic": "superseded-guidance",
+      "route": "none",
+      "status": "warning",
+      "keywords": [
+        "फॉर्म 14 पुराना",
+        "फॉर्म 14 आर्काइव",
+        "फॉर्म १४ जुना",
+        "फॉर्म १४ संग्रहित"
+      ],
+      "sources": {
+        "FORMSLIST": {
+          "sourceId": "PENSION-FORMS-LIST",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Downloads: Application/Claim Forms",
+          "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
+          "accessed": "2026-08-28"
+        },
+        "FAQ2018": {
+          "sourceId": "FAQ-CIVIL-2018",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Frequently Asked Questions on Pension Policy Issues — Central Civil Pensioners",
+          "url": "https://pensionersportal.gov.in/FAQ_Civil.pdf",
+          "accessed": "2026-08-28"
+        }
+      }
+    },
+    {
+      "id": "form12-checklist-hi-mr",
+      "file": "ingest/14-form12-checklist-hi-mr.md",
+      "title": "Form 12 document checklist — checked guidance in Hindi and Marathi",
+      "topic": "checklist",
+      "route": "form12_pda",
+      "status": "current",
+      "keywords": [
+        "फॉर्म 12 दस्तावेज",
+        "मृत्यु प्रमाण पत्र",
+        "नमूना हस्ताक्षर",
+        "फॉर्म १२ कागदपत्रे",
+        "मृत्यू प्रमाणपत्र",
+        "नमुना स्वाक्षऱ्या"
+      ],
+      "sources": {
+        "FORM12": {
+          "sourceId": "FORM12-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 12 — Application to Pension Disbursing Authority for commencement of family pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
+          "accessed": "2026-08-28"
+        },
+        "RULE79": {
+          "sourceId": "CCS2021-NOTIFICATION",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Central Civil Services (Pension) Rules, 2021",
+          "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
+          "accessed": "2026-08-28"
+        }
+      }
+    },
+    {
+      "id": "name-consistency-hi-mr",
+      "file": "ingest/15-name-consistency-hi-mr.md",
+      "title": "Name consistency — checked guidance in Hindi and Marathi",
+      "topic": "consistency-check",
+      "route": "both",
+      "status": "current",
+      "keywords": [
+        "नाम अलग",
+        "नाम मेल नहीं",
+        "बैंक खाते में नाम",
+        "नाव वेगळे",
+        "नाव जुळत नाही",
+        "बँक खात्यातील नाव"
+      ],
+      "sources": {
+        "FORM10": {
+          "sourceId": "FORM10-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 10 — Application to the Head of Office for Family Pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
+          "accessed": "2026-08-28"
+        }
+      }
+    },
+    {
+      "id": "bank-guidance-hi-mr",
+      "file": "ingest/16-bank-guidance-hi-mr.md",
+      "title": "RBI bank guidance — checked guidance in Hindi and Marathi",
+      "topic": "bank-direction",
+      "route": "form12_pda",
+      "status": "current",
+      "keywords": [
+        "बैंक नया खाता",
+        "संयुक्त खाता",
+        "PPO पासबुक",
+        "बँक नवीन खाते",
+        "संयुक्त खाते",
+        "PPO पासबुक"
+      ],
+      "sources": {
+        "RBI2026": {
+          "sourceId": "RBI2026-MD",
+          "issuer": "Reserve Bank of India",
+          "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026",
+          "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
+          "accessed": "2026-08-28"
         }
       }
     }
@@ -395,7 +575,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12, page 1 header — \"[See Rule 79(2)]\""
         },
         {
@@ -404,7 +584,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(a)(ii),\nprinted page 177, PDF page 56"
         }
       ]
@@ -436,7 +616,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12, page 1 header"
         },
         {
@@ -445,7 +625,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(a)(ii), printed page 177, PDF page 56"
         }
       ]
@@ -477,7 +657,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(a)(ii), printed page 177, PDF\npage 56"
         },
         {
@@ -486,7 +666,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(a)(i), printed page 177, PDF page 56"
         }
       ]
@@ -518,7 +698,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Downloads: Application/Claim Forms",
           "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "current forms list entry for Form 12"
         }
       ]
@@ -550,7 +730,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12,\npage 1, items 1, 2 and 4"
         },
         {
@@ -559,7 +739,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12, page 1,\nfooter fields"
         }
       ]
@@ -591,7 +771,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 10 — Application to the Head of Office for Family Pension on Death of a Government Servant or Pensioner or on Death or Ineligibility of a Family Pensioner or when a Government Servant or Pensioner or Family Pensioner goes missing",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 10, page 1 header —\n\"[See rules 50, 71, 74, 76, 79 and 80]\""
         },
         {
@@ -600,7 +780,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(b)(i), printed page 177,\nPDF page 56"
         }
       ]
@@ -632,7 +812,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(b)(i), printed page 177, PDF page 56"
         },
         {
@@ -641,7 +821,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(3)(iii), 79(4)(a)(ii), 79(5) and\nRule 80(5)(a), printed pages 177–178, PDF pages 56–57"
         }
       ]
@@ -673,7 +853,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 10 — Application to the Head of Office for Family Pension on Death of a Government Servant or Pensioner or on Death or Ineligibility of a Family Pensioner or when a Government Servant or Pensioner or Family Pensioner goes missing",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 10, page 3, list items 2, 3, 5 and 6"
         },
         {
@@ -682,7 +862,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 10 — Application to the Head of Office for Family Pension on Death of a Government Servant or Pensioner or on Death or Ineligibility of a Family Pensioner or when a Government Servant or Pensioner or Family Pensioner goes missing",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 10, page 3, list item 19"
         }
       ]
@@ -714,7 +894,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Downloads: Application/Claim Forms",
           "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "current forms list entry for Form 10"
         }
       ]
@@ -745,7 +925,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Format 9 — Undertaking (refund of excess payment) to the pension disbursing bank",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_format/Format9.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Format 9,\npage 1 header — \"(See Rules 57, 58, 60, 63, 71, 74, 76, 79 and 80)\""
         },
         {
@@ -754,7 +934,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Format 9 — Undertaking (refund of excess payment) to the pension disbursing bank",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_format/Format9.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Format 9, page 1, body\nparagraph 1"
         },
         {
@@ -763,7 +943,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Format 9 — Undertaking (refund of excess payment) to the pension disbursing bank",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_format/Format9.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Format 9, page 1, paragraph 2"
         }
       ]
@@ -794,7 +974,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(a)(ii), printed page 177, PDF\npage 56"
         },
         {
@@ -803,7 +983,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(3)(iii), printed page 177, PDF page 56"
         }
       ]
@@ -856,7 +1036,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Chapter XII heading\nand Rule 79 title, printed page 176, PDF page 55"
         }
       ]
@@ -888,7 +1068,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(a)(ii), printed page 177, PDF page 56"
         },
         {
@@ -897,7 +1077,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule\n79(2)(b)(i), printed page 177, PDF page 56"
         },
         {
@@ -906,7 +1086,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(a)(v), printed page 177, PDF\npage 56"
         }
       ]
@@ -938,7 +1118,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(a)(iv), printed page 177, PDF page\n56"
         }
       ]
@@ -970,7 +1150,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 80(1), printed page\n178, PDF page 57"
         },
         {
@@ -979,7 +1159,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 80(2), 80(3) and 80(4), printed page 178, PDF page 57"
         }
       ]
@@ -1011,7 +1191,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(3)(vi), printed page 178, PDF page\n57"
         },
         {
@@ -1020,7 +1200,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(3)(vii), printed page 178, PDF page 57"
         }
       ]
@@ -1052,7 +1232,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Downloads: Application/Claim Forms",
           "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "\"Archives\" section entry for Form 14"
         },
         {
@@ -1061,7 +1241,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(a)(ii), printed page 177, PDF page 56"
         }
       ]
@@ -1093,7 +1273,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Frequently Asked Questions (FAQs) on Pension Policy Issues — Central Civil Pensioners",
           "url": "https://pensionersportal.gov.in/FAQ_Civil.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "FAQ answer 8.2, page 17"
         }
       ]
@@ -1125,7 +1305,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Downloads: Application/Claim Forms",
           "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "current forms list entry\nfor Form 12 and \"Archives\" section entry for the old Form 12"
         }
       ]
@@ -1181,7 +1361,7 @@
           "issuer": "Reserve Bank of India",
           "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026 (Updated as on June 24, 2026)",
           "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Chapter I, paragraphs 1 and 3"
         }
       ]
@@ -1215,7 +1395,7 @@
           "issuer": "Reserve Bank of India",
           "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026 (Updated as on June 24, 2026)",
           "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Chapter\nVII(E), paragraph 23"
         }
       ]
@@ -1249,7 +1429,7 @@
           "issuer": "Reserve Bank of India",
           "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026 (Updated as on June 24, 2026)",
           "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Chapter VII(F), paragraph 24"
         }
       ]
@@ -1283,7 +1463,7 @@
           "issuer": "Reserve Bank of India",
           "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026 (Updated as on June 24, 2026)",
           "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Chapter III,\nopening paragraph"
         },
         {
@@ -1292,7 +1472,7 @@
           "issuer": "Reserve Bank of India",
           "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026 (Updated as on June 24, 2026)",
           "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Chapter III(A), paragraph 8(i)"
         }
       ]
@@ -1326,7 +1506,7 @@
           "issuer": "Reserve Bank of India",
           "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026 (Updated as on June 24, 2026)",
           "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Chapter VII(D), paragraphs 21 and 22"
         }
       ]
@@ -1359,7 +1539,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule\n79(2)(a)(ii), printed page 177, PDF page 56"
         }
       ]
@@ -1392,7 +1572,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12, page 2, list item 1"
         },
         {
@@ -1401,7 +1581,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12, page\n  2, list item 2"
         },
         {
@@ -1410,7 +1590,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12, page 2, list item 3"
         },
         {
@@ -1419,7 +1599,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12, page 2, list item 7"
         },
         {
@@ -1428,7 +1608,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12, page 2, list item 9"
         }
       ]
@@ -1461,7 +1641,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12, page 2,\nlist items 4, 5, 6 and 8; Form 12, page 1, item 3"
         }
       ]
@@ -1494,7 +1674,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12,\npage 1, item 4"
         }
       ]
@@ -1527,7 +1707,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 12 — Application to be submitted to Pension Disbursing Authority by spouse/co-authorised family member for commencement of family pension on death of a pensioner or family pensioner",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 12, page 1, declaration above\nthe signature block"
         }
       ]
@@ -1559,7 +1739,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Form 10 — Application to the Head of Office for Family Pension on Death of a Government Servant or Pensioner or on Death or Ineligibility of a Family Pensioner or when a Government Servant or Pensioner or Family Pensioner goes missing",
           "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Form 10, page 3, list item 19"
         },
         {
@@ -1568,7 +1748,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(a)(ii), printed page 177, PDF page 56"
         }
       ]
@@ -1600,7 +1780,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Guidelines for Pensioners",
           "url": "https://pensionersportal.gov.in/guidelines.aspx",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "\"Verification of PPO\""
         }
       ]
@@ -1658,7 +1838,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule\n79(2)(a)(i) and 79(2)(a)(ii), printed page 177, PDF page 56"
         }
       ]
@@ -1694,7 +1874,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule\n79(3)(vii), printed page 178, PDF page 57"
         }
       ]
@@ -1782,7 +1962,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Terms of Use / Disclaimer — Pensioners' Portal",
           "url": "https://pensionersportal.gov.in/disclaimer.aspx",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Disclaimer"
         },
         {
@@ -1791,7 +1971,7 @@
           "issuer": "Build What Moves India",
           "title": "Builder brief — Build What Moves India",
           "url": "https://buildwhatmovesindia.com/brief",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "\"What not to do\""
         }
       ]
@@ -1848,7 +2028,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79,\n   printed pages 176–178, PDF pages 55–57"
         },
         {
@@ -1857,7 +2037,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Downloads: Application/Claim Forms",
           "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "current forms list and \"Archives\" section"
         }
       ]
@@ -1888,7 +2068,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Frequently Asked Questions (FAQs) on Pension Policy Issues — Central Civil Pensioners",
           "url": "https://pensionersportal.gov.in/FAQ_Civil.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "FAQ answer 8.2, page 17"
         },
         {
@@ -1897,7 +2077,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
           "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "Rule 79(2)(a)(ii), printed page 177, PDF page 56"
         },
         {
@@ -1906,7 +2086,7 @@
           "issuer": "Department of Pension and Pensioners' Welfare",
           "title": "Downloads: Application/Claim Forms",
           "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
-          "accessed": "2026-08-27",
+          "accessed": "2026-08-28",
           "reference": "current\nforms list entry for Form 12; \"Archives\" section entry for Form 14"
         }
       ]
@@ -1931,6 +2111,514 @@
       "text": "Anything not supported by a source in this corpus is answered with: `I could not verify this from the current official corpus.` SevaPath does not fill a gap from general knowledge.",
       "productPolicy": false,
       "citations": []
+    },
+    {
+      "id": "form12-route-hi-mr#ह-द-ppo-म-न-म-ह-न-पर-र-स-त",
+      "briefId": "form12-route-hi-mr",
+      "briefTitle": "Form 12 route — checked guidance in Hindi and Marathi",
+      "file": "ingest/11-form12-route-hi-mr.md",
+      "heading": "हिंदी — PPO में नाम होने पर रास्ता",
+      "topic": "primary-route",
+      "route": "form12_pda",
+      "status": "current",
+      "keywords": [
+        "पीपीओ में नाम",
+        "PPO में नाम",
+        "फॉर्म 12",
+        "पेंशन वितरण प्राधिकारी",
+        "पीपीओमध्ये नाव",
+        "PPO मध्ये नाव",
+        "फॉर्म १२",
+        "निवृत्तिवेतन वितरण प्राधिकरण"
+      ],
+      "text": "यदि जीवित पति या पत्नी का नाम Pension Payment Order (PPO) में दर्ज है, तो family pension शुरू कराने के लिए Form 12 Pension Disbursing Authority को दिया जाता है। इसके साथ मृतक pensioner के death certificate की copy और Format 9 का undertaking देना होता है। नियम में Authority को पूरा claim मिलने के एक महीने के भीतर भुगतान शुरू करने के लिए कहा गया है। Form 12 के शीर्षक में भी यही named-spouse/PDA route लिखा है और वह Rule 79(2) को उद्धृत करता है।",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "RULE79",
+          "sourceId": "CCS2021-NOTIFICATION",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Central Civil Services (Pension) Rules, 2021",
+          "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Rule 79(2)(a)(ii), printed page\n177, PDF page 56"
+        },
+        {
+          "key": "FORM12",
+          "sourceId": "FORM12-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 12 — Application to Pension Disbursing Authority for commencement of family pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Form 12, page 1 header"
+        }
+      ]
+    },
+    {
+      "id": "form12-route-hi-mr#मर-ठ-ppo-मध-य-न-व-असल-य-स-म-र-ग",
+      "briefId": "form12-route-hi-mr",
+      "briefTitle": "Form 12 route — checked guidance in Hindi and Marathi",
+      "file": "ingest/11-form12-route-hi-mr.md",
+      "heading": "मराठी — PPO मध्ये नाव असल्यास मार्ग",
+      "topic": "primary-route",
+      "route": "form12_pda",
+      "status": "current",
+      "keywords": [
+        "पीपीओ में नाम",
+        "PPO में नाम",
+        "फॉर्म 12",
+        "पेंशन वितरण प्राधिकारी",
+        "पीपीओमध्ये नाव",
+        "PPO मध्ये नाव",
+        "फॉर्म १२",
+        "निवृत्तिवेतन वितरण प्राधिकरण"
+      ],
+      "text": "जिवंत पती किंवा पत्नीचे नाव Pension Payment Order (PPO) मध्ये नोंदलेले असल्यास, family pension सुरू करण्यासाठी Form 12 Pension Disbursing Authority कडे द्यावा. त्यासोबत मृत pensioner च्या death certificate ची प्रत आणि Format 9 मधील undertaking द्यावे. पूर्ण claim मिळाल्यानंतर एका महिन्याच्या आत वितरण सुरू करण्याचे नियमात नमूद आहे. Form 12 च्या शीर्षकात हाच named-spouse/PDA मार्ग दिला असून Rule 79(2) चा संदर्भ आहे.",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "RULE79",
+          "sourceId": "CCS2021-NOTIFICATION",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Central Civil Services (Pension) Rules, 2021",
+          "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Rule 79(2)(a)(ii), printed page 177, PDF page\n56"
+        },
+        {
+          "key": "FORM12",
+          "sourceId": "FORM12-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 12 — Application to Pension Disbursing Authority for commencement of family pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Form 12, page 1 header"
+        }
+      ]
+    },
+    {
+      "id": "form10-route-hi-mr#ह-द-ppo-म-न-म-न-ह-न-पर-र-स-त",
+      "briefId": "form10-route-hi-mr",
+      "briefTitle": "Form 10 route — checked guidance in Hindi and Marathi",
+      "file": "ingest/12-form10-route-hi-mr.md",
+      "heading": "हिंदी — PPO में नाम न होने पर रास्ता",
+      "topic": "alternative-route",
+      "route": "form10_hoo",
+      "status": "current",
+      "keywords": [
+        "PPO में नाम नहीं",
+        "पीपीओ में नाम नहीं",
+        "फॉर्म 10",
+        "कार्यालय प्रमुख",
+        "PPO मध्ये नाव नाही",
+        "पीपीओमध्ये नाव नाही",
+        "फॉर्म १०",
+        "कार्यालय प्रमुख"
+      ],
+      "text": "यदि claimant का नाम PPO में दर्ज नहीं है, तो Rule 79 का वैकल्पिक रास्ता Head of Office से होकर जाता है। Claim Form 10 में किया जाता है; Head of Office मामले की जाँच करके family pension sanction होने पर Pension Disbursing Authority के लिए Format 13 जारी करता है। Form 10 के शीर्षक में Head of Office को आवेदन और Rule 79 का संदर्भ दिया गया है।",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "RULE79",
+          "sourceId": "CCS2021-NOTIFICATION",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Central Civil Services (Pension) Rules, 2021",
+          "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Rule 79(2)(b)(i), printed page 177, PDF page 56"
+        },
+        {
+          "key": "FORM10",
+          "sourceId": "FORM10-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 10 — Application to the Head of Office for Family Pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Form 10, page 1 header"
+        }
+      ]
+    },
+    {
+      "id": "form10-route-hi-mr#मर-ठ-ppo-मध-य-न-व-नसल-य-स-म-र-ग",
+      "briefId": "form10-route-hi-mr",
+      "briefTitle": "Form 10 route — checked guidance in Hindi and Marathi",
+      "file": "ingest/12-form10-route-hi-mr.md",
+      "heading": "मराठी — PPO मध्ये नाव नसल्यास मार्ग",
+      "topic": "alternative-route",
+      "route": "form10_hoo",
+      "status": "current",
+      "keywords": [
+        "PPO में नाम नहीं",
+        "पीपीओ में नाम नहीं",
+        "फॉर्म 10",
+        "कार्यालय प्रमुख",
+        "PPO मध्ये नाव नाही",
+        "पीपीओमध्ये नाव नाही",
+        "फॉर्म १०",
+        "कार्यालय प्रमुख"
+      ],
+      "text": "claimant चे नाव PPO मध्ये नोंदलेले नसल्यास Rule 79 मधील पर्यायी मार्ग Head of Office कडे जातो. Claim Form 10 मध्ये करावा; तपासणीनंतर family pension मंजूर झाल्यास Head of Office Pension Disbursing Authority साठी Format 13 जारी करतो. Form 10 च्या शीर्षकात Head of Office कडे अर्ज आणि Rule 79 चा संदर्भ स्पष्ट आहे.",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "RULE79",
+          "sourceId": "CCS2021-NOTIFICATION",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Central Civil Services (Pension) Rules, 2021",
+          "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Rule 79(2)(b)(i), printed page 177, PDF page 56"
+        },
+        {
+          "key": "FORM10",
+          "sourceId": "FORM10-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 10 — Application to the Head of Office for Family Pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Form 10, page 1 header"
+        }
+      ]
+    },
+    {
+      "id": "form14-archived-hi-mr#ह-द-form-14-क-प-र-न-स-चन",
+      "briefId": "form14-archived-hi-mr",
+      "briefTitle": "Form 14 archived warning — checked guidance in Hindi and Marathi",
+      "file": "ingest/13-form14-archived-hi-mr.md",
+      "heading": "हिंदी — Form 14 की पुरानी सूचना",
+      "topic": "superseded-guidance",
+      "route": "none",
+      "status": "warning",
+      "keywords": [
+        "फॉर्म 14 पुराना",
+        "फॉर्म 14 आर्काइव",
+        "फॉर्म १४ जुना",
+        "फॉर्म १४ संग्रहित"
+      ],
+      "text": "Pensioners' Portal की मौजूदा forms list में Form 14 “Archives” के नीचे है, इसलिए उसे named-spouse route का मौजूदा form न समझें। पुराने FAQ में अब भी Form 14 लिखा है; वह 2021 Rules से पहले का guidance है।",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "FORMSLIST",
+          "sourceId": "PENSION-FORMS-LIST",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Downloads: Application/Claim Forms",
+          "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
+          "accessed": "2026-08-28",
+          "reference": "Archives section entry\nfor Form 14"
+        },
+        {
+          "key": "FAQ2018",
+          "sourceId": "FAQ-CIVIL-2018",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Frequently Asked Questions on Pension Policy Issues — Central Civil Pensioners",
+          "url": "https://pensionersportal.gov.in/FAQ_Civil.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Page 17, answer to item 44"
+        }
+      ]
+    },
+    {
+      "id": "form14-archived-hi-mr#मर-ठ-form-14-व-षय-ज-न-स-चन",
+      "briefId": "form14-archived-hi-mr",
+      "briefTitle": "Form 14 archived warning — checked guidance in Hindi and Marathi",
+      "file": "ingest/13-form14-archived-hi-mr.md",
+      "heading": "मराठी — Form 14 विषयी जुनी सूचना",
+      "topic": "superseded-guidance",
+      "route": "none",
+      "status": "warning",
+      "keywords": [
+        "फॉर्म 14 पुराना",
+        "फॉर्म 14 आर्काइव",
+        "फॉर्म १४ जुना",
+        "फॉर्म १४ संग्रहित"
+      ],
+      "text": "Pensioners' Portal च्या सध्याच्या forms list मध्ये Form 14 “Archives” अंतर्गत आहे; म्हणून named-spouse मार्गासाठी तो सध्याचा form समजू नये. जुन्या FAQ मध्ये अजूनही Form 14 नमूद आहे; ते 2021 Rules पूर्वीचे guidance आहे.",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "FORMSLIST",
+          "sourceId": "PENSION-FORMS-LIST",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Downloads: Application/Claim Forms",
+          "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
+          "accessed": "2026-08-28",
+          "reference": "Archives section entry for Form 14"
+        },
+        {
+          "key": "FAQ2018",
+          "sourceId": "FAQ-CIVIL-2018",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Frequently Asked Questions on Pension Policy Issues — Central Civil Pensioners",
+          "url": "https://pensionersportal.gov.in/FAQ_Civil.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Page 17, answer to item 44"
+        }
+      ]
+    },
+    {
+      "id": "form12-checklist-hi-mr#ह-द-form-12-क-स-थ-क-य-ज-ट-ए",
+      "briefId": "form12-checklist-hi-mr",
+      "briefTitle": "Form 12 document checklist — checked guidance in Hindi and Marathi",
+      "file": "ingest/14-form12-checklist-hi-mr.md",
+      "heading": "हिंदी — Form 12 के साथ क्या जुटाएँ",
+      "topic": "checklist",
+      "route": "form12_pda",
+      "status": "current",
+      "keywords": [
+        "फॉर्म 12 दस्तावेज",
+        "मृत्यु प्रमाण पत्र",
+        "नमूना हस्ताक्षर",
+        "फॉर्म १२ कागदपत्रे",
+        "मृत्यू प्रमाणपत्र",
+        "नमुना स्वाक्षऱ्या"
+      ],
+      "text": "Rule 79 में Form 12 के साथ death certificate की copy और Format 9 undertaking बताए गए हैं। Form 12 की अपनी list में claimant के दो specimen signatures, passport-size photographs की तीन copies, पहचान के दो निशान, और signature न कर पाने पर बाएँ हाथ की उँगलियों के impressions शामिल हैं। Guardian या nominee वाले अतिरिक्त items केवल लागू होने पर चाहिए।",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "RULE79",
+          "sourceId": "CCS2021-NOTIFICATION",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Central Civil Services (Pension) Rules, 2021",
+          "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Rule 79(2)(a)(ii), printed page 177, PDF page 56"
+        },
+        {
+          "key": "FORM12",
+          "sourceId": "FORM12-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 12 — Application to Pension Disbursing Authority for commencement of family pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Form 12, page 2, documents list items\n1-7"
+        }
+      ]
+    },
+    {
+      "id": "form12-checklist-hi-mr#मर-ठ-form-12-स-बत-क-य-ग-ळ-कर-व",
+      "briefId": "form12-checklist-hi-mr",
+      "briefTitle": "Form 12 document checklist — checked guidance in Hindi and Marathi",
+      "file": "ingest/14-form12-checklist-hi-mr.md",
+      "heading": "मराठी — Form 12 सोबत काय गोळा करावे",
+      "topic": "checklist",
+      "route": "form12_pda",
+      "status": "current",
+      "keywords": [
+        "फॉर्म 12 दस्तावेज",
+        "मृत्यु प्रमाण पत्र",
+        "नमूना हस्ताक्षर",
+        "फॉर्म १२ कागदपत्रे",
+        "मृत्यू प्रमाणपत्र",
+        "नमुना स्वाक्षऱ्या"
+      ],
+      "text": "Rule 79 मध्ये Form 12 सोबत death certificate ची प्रत आणि Format 9 undertaking नमूद आहेत. Form 12 च्या list मध्ये claimant च्या दोन specimen signatures, passport-size photographs च्या तीन प्रती, ओळखीच्या दोन खुणा आणि स्वाक्षरी करता येत नसल्यास डाव्या हाताच्या बोटांचे impressions आहेत. Guardian किंवा nominee संबंधी अतिरिक्त items फक्त लागू असल्यास आवश्यक आहेत.",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "RULE79",
+          "sourceId": "CCS2021-NOTIFICATION",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Central Civil Services (Pension) Rules, 2021",
+          "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Rule 79(2)(a)(ii), printed page 177, PDF page 56"
+        },
+        {
+          "key": "FORM12",
+          "sourceId": "FORM12-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 12 — Application to Pension Disbursing Authority for commencement of family pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Form 12, page 2,\ndocuments list items 1-7"
+        }
+      ]
+    },
+    {
+      "id": "name-consistency-hi-mr#ह-द-न-म-अलग-द-ख-त",
+      "briefId": "name-consistency-hi-mr",
+      "briefTitle": "Name consistency — checked guidance in Hindi and Marathi",
+      "file": "ingest/15-name-consistency-hi-mr.md",
+      "heading": "हिंदी — नाम अलग दिखे तो",
+      "topic": "consistency-check",
+      "route": "both",
+      "status": "current",
+      "keywords": [
+        "नाम अलग",
+        "नाम मेल नहीं",
+        "बैंक खाते में नाम",
+        "नाव वेगळे",
+        "नाव जुळत नाही",
+        "बँक खात्यातील नाव"
+      ],
+      "text": "Form 10 की document list कहती है कि claim form और bank account में claimant का नाम एक जैसा होना चाहिए।",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "FORM10",
+          "sourceId": "FORM10-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 10 — Application to the Head of Office for Family Pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Form 10, page 3, list item 19"
+        }
+      ]
+    },
+    {
+      "id": "name-consistency-hi-mr#ह-द-sevapath-क-स-म",
+      "briefId": "name-consistency-hi-mr",
+      "briefTitle": "Name consistency — checked guidance in Hindi and Marathi",
+      "file": "ingest/15-name-consistency-hi-mr.md",
+      "heading": "हिंदी — SevaPath की सीमा",
+      "topic": "consistency-check",
+      "route": "both",
+      "status": "current",
+      "keywords": [
+        "नाम अलग",
+        "नाम मेल नहीं",
+        "बैंक खाते में नाम",
+        "नाव वेगळे",
+        "नाव जुळत नाही",
+        "बँक खात्यातील नाव"
+      ],
+      "text": "यदि spelling या initials अलग हैं, तो SevaPath यह तय नहीं करता कि दोनों नाम एक ही व्यक्ति के हैं और किसी record को बदलता नहीं है। दोनों records को Head of Office या Pension Disbursing Authority के सामने human review के लिए रखें।",
+      "productPolicy": true,
+      "citations": []
+    },
+    {
+      "id": "name-consistency-hi-mr#मर-ठ-न-व-व-गळ-द-सल-य-स",
+      "briefId": "name-consistency-hi-mr",
+      "briefTitle": "Name consistency — checked guidance in Hindi and Marathi",
+      "file": "ingest/15-name-consistency-hi-mr.md",
+      "heading": "मराठी — नाव वेगळे दिसल्यास",
+      "topic": "consistency-check",
+      "route": "both",
+      "status": "current",
+      "keywords": [
+        "नाम अलग",
+        "नाम मेल नहीं",
+        "बैंक खाते में नाम",
+        "नाव वेगळे",
+        "नाव जुळत नाही",
+        "बँक खात्यातील नाव"
+      ],
+      "text": "Form 10 च्या document list नुसार claim form आणि bank account मधील claimant चे नाव एकसारखे असावे.",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "FORM10",
+          "sourceId": "FORM10-2021",
+          "issuer": "Department of Pension and Pensioners' Welfare",
+          "title": "Form 10 — Application to the Head of Office for Family Pension",
+          "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
+          "accessed": "2026-08-28",
+          "reference": "Form 10, page 3, list item 19"
+        }
+      ]
+    },
+    {
+      "id": "name-consistency-hi-mr#मर-ठ-sevapath-च-मर-य-द",
+      "briefId": "name-consistency-hi-mr",
+      "briefTitle": "Name consistency — checked guidance in Hindi and Marathi",
+      "file": "ingest/15-name-consistency-hi-mr.md",
+      "heading": "मराठी — SevaPath ची मर्यादा",
+      "topic": "consistency-check",
+      "route": "both",
+      "status": "current",
+      "keywords": [
+        "नाम अलग",
+        "नाम मेल नहीं",
+        "बैंक खाते में नाम",
+        "नाव वेगळे",
+        "नाव जुळत नाही",
+        "बँक खात्यातील नाव"
+      ],
+      "text": "spelling किंवा initials वेगळे असल्यास SevaPath दोन्ही नावे एकाच व्यक्तीची आहेत का हे ठरवत नाही आणि कोणतीही record बदलत नाही. दोन्ही records Head of Office किंवा Pension Disbursing Authority कडे मानवी तपासणीसाठी द्या.",
+      "productPolicy": true,
+      "citations": []
+    },
+    {
+      "id": "bank-guidance-hi-mr#ह-द-bank-account-और-ppo-guidance",
+      "briefId": "bank-guidance-hi-mr",
+      "briefTitle": "RBI bank guidance — checked guidance in Hindi and Marathi",
+      "file": "ingest/16-bank-guidance-hi-mr.md",
+      "heading": "हिंदी — bank account और PPO guidance",
+      "topic": "bank-direction",
+      "route": "form12_pda",
+      "status": "current",
+      "keywords": [
+        "बैंक नया खाता",
+        "संयुक्त खाता",
+        "PPO पासबुक",
+        "बँक नवीन खाते",
+        "संयुक्त खाते",
+        "PPO पासबुक"
+      ],
+      "text": "यदि spouse family pension के लिए मौजूदा joint account चुनता है, तो agency bank नया account खोलने पर ज़ोर नहीं दे सकता। Bank को pension passbook में PPO number दर्ज करना चाहिए।",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "RBI2026",
+          "sourceId": "RBI2026-MD",
+          "issuer": "Reserve Bank of India",
+          "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026",
+          "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
+          "accessed": "2026-08-28",
+          "reference": "Chapter VII(E), paragraph 23"
+        },
+        {
+          "key": "RBI2026",
+          "sourceId": "RBI2026-MD",
+          "issuer": "Reserve Bank of India",
+          "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026",
+          "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
+          "accessed": "2026-08-28",
+          "reference": "Chapter\nVII(F), paragraph 24"
+        }
+      ]
+    },
+    {
+      "id": "bank-guidance-hi-mr#मर-ठ-bank-account-आण-ppo-guidance",
+      "briefId": "bank-guidance-hi-mr",
+      "briefTitle": "RBI bank guidance — checked guidance in Hindi and Marathi",
+      "file": "ingest/16-bank-guidance-hi-mr.md",
+      "heading": "मराठी — bank account आणि PPO guidance",
+      "topic": "bank-direction",
+      "route": "form12_pda",
+      "status": "current",
+      "keywords": [
+        "बैंक नया खाता",
+        "संयुक्त खाता",
+        "PPO पासबुक",
+        "बँक नवीन खाते",
+        "संयुक्त खाते",
+        "PPO पासबुक"
+      ],
+      "text": "spouse ने family pension साठी विद्यमान joint account निवडल्यास agency bank ने नवीन account उघडण्याचा आग्रह धरू नये. Bank ने pension passbook मध्ये PPO number नोंदवावा.",
+      "productPolicy": false,
+      "citations": [
+        {
+          "key": "RBI2026",
+          "sourceId": "RBI2026-MD",
+          "issuer": "Reserve Bank of India",
+          "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026",
+          "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
+          "accessed": "2026-08-28",
+          "reference": "Chapter VII(E), paragraph 23"
+        },
+        {
+          "key": "RBI2026",
+          "sourceId": "RBI2026-MD",
+          "issuer": "Reserve Bank of India",
+          "title": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026",
+          "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
+          "accessed": "2026-08-28",
+          "reference": "Chapter VII(F),\nparagraph 24"
+        }
+      ]
     }
   ]
 }

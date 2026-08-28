@@ -16,6 +16,9 @@ const corpusRoot = path.resolve(scriptDir, "..");
 const manifest = JSON.parse(
   await readFile(path.join(corpusRoot, "raw_sources_auto", "collection_manifest.json"), "utf8")
 );
+const config = JSON.parse(
+  await readFile(path.join(corpusRoot, "config", "public_sources.json"), "utf8")
+);
 
 /**
  * Curated per-source facts.
@@ -121,37 +124,58 @@ const columns = [
   "issuer",
   "official_title",
   "requested_url",
+  "canonical_url",
   "final_url",
   "accessed_utc",
   "document_date",
   "sha256",
   "collection_method",
   "http_status",
+  "content_type",
   "bytes",
+  "pdf_page_count",
+  "pdf_extraction_method",
+  "ocr_used",
   "robots_status",
   "corpus_status",
   "rights_note",
+  "rights_status",
+  "raw_deployment_permitted",
+  "relevant_locators",
+  "derived_briefs",
   "scope_note"
 ];
 
 const rows = manifest.results.map((result) => {
   const extra = curated[result.id];
   if (!extra) throw new Error(`No curated metadata for source ${result.id}`);
+  const configured = config.sources.find((source) => source.id === result.id);
+  const provenance = config.provenance[result.id];
+  if (!configured || !provenance) throw new Error(`No configured provenance for ${result.id}`);
   return [
     result.id,
     result.issuer,
     extra.officialTitle,
     result.requestedUrl,
+    configured.url,
     result.finalUrl,
     result.collectedAt,
     extra.documentDate,
     result.sha256,
     result.method,
     String(result.httpStatus ?? ""),
+    result.contentType,
     String(result.bytes ?? ""),
+    String(result.pageCount ?? ""),
+    result.extractionMethod ?? "not-applicable",
+    String(result.ocrUsed ?? false),
     result.robots?.status ?? "",
     extra.corpusStatus,
     extra.rightsNote,
+    provenance.rightsStatus,
+    String(provenance.rawDeploymentPermitted),
+    provenance.relevantLocators.join(" | "),
+    provenance.derivedBriefs.join(" | "),
     extra.scopeNote
   ];
 });

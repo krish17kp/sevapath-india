@@ -20,7 +20,7 @@ def test_resolves_a_marker_against_the_named_brief() -> None:
     assert citation.sourceId == "CCS2021-NOTIFICATION"
     assert citation.issuer == "Department of Pension and Pensioners' Welfare"
     assert citation.url.startswith("https://pensionersportal.gov.in/")
-    assert citation.accessed == "2026-08-27"
+    assert citation.accessed == "2026-08-28"
     assert citation.reference == "Rule 79(2)(a)(ii), printed page 177, PDF page 56"
 
 
@@ -59,6 +59,18 @@ def test_display_name_with_a_path_prefix_still_resolves() -> None:
     )
 
     assert len(resolved) == 1
+
+
+def test_adk_text_only_result_preserves_recorded_citation() -> None:
+    text, resolved, filename = citations.resolve_any(
+        "Form 12 goes to the PDA. "
+        "[RULE79: Rule 79(2)(a)(ii), printed page 177, PDF page 56]"
+    )
+
+    assert text == "Form 12 goes to the PDA."
+    assert resolved[0].sourceId == "CCS2021-NOTIFICATION"
+    assert resolved[0].url.startswith("https://pensionersportal.gov.in/")
+    assert filename.endswith(".md")
 
 
 def test_every_brief_frontmatter_parses() -> None:

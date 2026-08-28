@@ -17,6 +17,7 @@ __pycache__/
 
 # Collected originals and automation logs
 rag-corpus/raw_sources_auto/
+rag-corpus/.vertex-mutation.lock
 claude-handoff/logs/
 
 # Local tooling

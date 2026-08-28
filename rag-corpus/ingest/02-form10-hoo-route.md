@@ -18,19 +18,19 @@ sources:
     issuer: Department of Pension and Pensioners' Welfare
     title: "Form 10 — Application to the Head of Office for Family Pension on Death of a Government Servant or Pensioner or on Death or Ineligibility of a Family Pensioner or when a Government Servant or Pensioner or Family Pensioner goes missing"
     url: https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf
-    accessed: 2026-08-27
+    accessed: 2026-08-28
   RULE79:
     sourceId: CCS2021-NOTIFICATION
     issuer: Department of Pension and Pensioners' Welfare
     title: "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))"
     url: https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf
-    accessed: 2026-08-27
+    accessed: 2026-08-28
   FORMSLIST:
     sourceId: PENSION-FORMS-LIST
     issuer: Department of Pension and Pensioners' Welfare
     title: "Downloads: Application/Claim Forms"
     url: https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx
-    accessed: 2026-08-27
+    accessed: 2026-08-28
 ---
 
 ## When the Head of Office route applies instead

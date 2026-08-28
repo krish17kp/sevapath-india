@@ -18,19 +18,19 @@ sources:
     issuer: Department of Pension and Pensioners' Welfare
     title: "Downloads: Application/Claim Forms"
     url: https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx
-    accessed: 2026-08-27
+    accessed: 2026-08-28
   FAQ2018:
     sourceId: FAQ-CIVIL-2018
     issuer: Department of Pension and Pensioners' Welfare
     title: "Frequently Asked Questions (FAQs) on Pension Policy Issues — Central Civil Pensioners"
     url: https://pensionersportal.gov.in/FAQ_Civil.pdf
-    accessed: 2026-08-27
+    accessed: 2026-08-28
   RULE79:
     sourceId: CCS2021-NOTIFICATION
     issuer: Department of Pension and Pensioners' Welfare
     title: "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))"
     url: https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf
-    accessed: 2026-08-27
+    accessed: 2026-08-28
 ---
 
 ## The warning

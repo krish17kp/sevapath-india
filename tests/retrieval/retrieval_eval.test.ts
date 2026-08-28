@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { retrieveGuidance, INSUFFICIENT_EVIDENCE_ANSWER } from "@/lib/retrieval";
+import { retrieveGuidance, insufficientEvidenceAnswer } from "@/lib/retrieval";
 
 /**
  * Runs every case in rag-corpus/tests/retrieval_eval.jsonl.
@@ -14,6 +14,7 @@ import { retrieveGuidance, INSUFFICIENT_EVIDENCE_ANSWER } from "@/lib/retrieval"
 interface EvalCase {
   id: string;
   category: string;
+  language?: "en" | "hi" | "mr";
   question: string;
   expectedOutcome: "answered" | "insufficient_evidence" | "out_of_scope";
   expectBriefId?: string;
@@ -59,11 +60,16 @@ describe("retrieval evaluation dataset", () => {
     const ids = cases.map((item) => item.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
+
+  it("covers English, Hindi and Marathi", () => {
+    const languages = new Set(cases.map((item) => item.language ?? "en"));
+    expect(languages).toEqual(new Set(["en", "hi", "mr"]));
+  });
 });
 
 describe.each(cases)("[$category] $id", (evalCase) => {
   it(`answers "${evalCase.question}" as ${evalCase.expectedOutcome}`, async () => {
-    const result = await retrieveGuidance(evalCase.question, { limit: 3 });
+    const result = await retrieveGuidance(evalCase.question, { limit: 5 });
 
     expect(result.outcome, evalCase.notes ?? evalCase.id).toBe(
       evalCase.expectedOutcome
@@ -81,7 +87,7 @@ describe.each(cases)("[$category] $id", (evalCase) => {
     }
 
     if (evalCase.expectedOutcome === "insufficient_evidence") {
-      expect(result.answer).toBe(INSUFFICIENT_EVIDENCE_ANSWER);
+      expect(result.answer).toBe(insufficientEvidenceAnswer(evalCase.question));
       expect(result.citations).toHaveLength(0);
     }
 

@@ -8,7 +8,6 @@ import pytest
 
 from sevapath_rag import service
 from sevapath_rag.config import VertexConfig
-from sevapath_rag.corpus import RetrievedContext
 
 CONFIG = VertexConfig(
     project="demo-project",
@@ -37,24 +36,17 @@ def _stub_cloud(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(service, "ensure_corpus", lambda config: "corpora/demo")
 
 
-def _stub_retrieve(monkeypatch: pytest.MonkeyPatch, contexts: list[RetrievedContext]) -> None:
-    def fake(config: Any, corpus_name: str, query: str) -> list[RetrievedContext]:
+def _stub_retrieve(monkeypatch: pytest.MonkeyPatch, contexts: list[str]) -> None:
+    def fake(config: Any, corpus_name: str, query: str) -> list[str]:
         return contexts
 
-    monkeypatch.setattr(service, "retrieve", fake)
+    monkeypatch.setattr(service, "execute_retrieval_tool", fake)
 
 
 def test_cited_context_is_answered(monkeypatch: pytest.MonkeyPatch) -> None:
     _stub_retrieve(
         monkeypatch,
-        [
-            RetrievedContext(
-                text=CITED_CHUNK,
-                source_display_name="01-form12-pda-route.md",
-                source_uri="gs://demo/01-form12-pda-route.md",
-                score=0.9,
-            )
-        ],
+        [CITED_CHUNK],
     )
 
     result = service.search("Which form goes to the Pension Disbursing Authority?", 3)
@@ -69,14 +61,7 @@ def test_cited_context_is_answered(monkeypatch: pytest.MonkeyPatch) -> None:
 def test_uncited_context_is_refused(monkeypatch: pytest.MonkeyPatch) -> None:
     _stub_retrieve(
         monkeypatch,
-        [
-            RetrievedContext(
-                text=UNCITED_CHUNK,
-                source_display_name="01-form12-pda-route.md",
-                source_uri="gs://demo/01-form12-pda-route.md",
-                score=0.95,
-            )
-        ],
+        [UNCITED_CHUNK],
     )
 
     result = service.search("Which form?", 3)
@@ -84,24 +69,6 @@ def test_uncited_context_is_refused(monkeypatch: pytest.MonkeyPatch) -> None:
     assert result["outcome"] == "insufficient_evidence"
     assert result["answer"] == service.INSUFFICIENT_EVIDENCE_ANSWER
     assert result["passages"] == []
-
-
-def test_low_scoring_context_is_dropped(monkeypatch: pytest.MonkeyPatch) -> None:
-    _stub_retrieve(
-        monkeypatch,
-        [
-            RetrievedContext(
-                text=CITED_CHUNK,
-                source_display_name="01-form12-pda-route.md",
-                source_uri="gs://demo/01-form12-pda-route.md",
-                score=0.01,
-            )
-        ],
-    )
-
-    result = service.search("Which form?", 3)
-
-    assert result["outcome"] == "insufficient_evidence"
 
 
 def test_no_contexts_gives_the_exact_refusal(monkeypatch: pytest.MonkeyPatch) -> None:

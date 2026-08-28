@@ -7,6 +7,7 @@ project, and no credential is ever read into a log line.
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -34,6 +35,8 @@ class VertexConfig:
     corpus_resource: str | None
     similarity_top_k: int
     vector_distance_threshold: float
+    chunk_size: int = 512
+    chunk_overlap: int = 100
 
     @property
     def has_corpus_resource(self) -> bool:
@@ -60,6 +63,26 @@ def load_config() -> VertexConfig:
             "Set it to a Vertex AI RAG Engine region, for example us-central1."
         )
 
+    top_k = int(os.environ.get("SEVAPATH_RAG_TOP_K", "5"))
+    threshold = float(os.environ.get("SEVAPATH_RAG_DISTANCE_THRESHOLD", "0.5"))
+    chunk_size = int(os.environ.get("SEVAPATH_RAG_CHUNK_SIZE", "512"))
+    chunk_overlap = int(os.environ.get("SEVAPATH_RAG_CHUNK_OVERLAP", "100"))
+    if not 1 <= top_k <= 20:
+        raise ConfigurationError("SEVAPATH_RAG_TOP_K must be between 1 and 20.")
+    if not 0 <= threshold <= 1:
+        raise ConfigurationError("SEVAPATH_RAG_DISTANCE_THRESHOLD must be between 0 and 1.")
+    if not 128 <= chunk_size <= 2048 or not 0 <= chunk_overlap < chunk_size:
+        raise ConfigurationError(
+            "RAG chunk size must be 128-2048 and overlap must be smaller than the chunk size."
+        )
+    corpus_resource = os.environ.get("SEVAPATH_RAG_CORPUS_RESOURCE", "").strip() or None
+    if corpus_resource:
+        expected = rf"^projects/{re.escape(project)}/locations/{re.escape(location)}/ragCorpora/[^/]+$"
+        if not re.match(expected, corpus_resource):
+            raise ConfigurationError(
+                "SEVAPATH_RAG_CORPUS_RESOURCE must be a complete corpus name for the configured project and location."
+            )
+
     return VertexConfig(
         project=project,
         location=location,
@@ -67,11 +90,11 @@ def load_config() -> VertexConfig:
             "SEVAPATH_RAG_CORPUS_NAME", DEFAULT_CORPUS_DISPLAY_NAME
         ).strip()
         or DEFAULT_CORPUS_DISPLAY_NAME,
-        corpus_resource=os.environ.get("SEVAPATH_RAG_CORPUS_RESOURCE", "").strip() or None,
-        similarity_top_k=int(os.environ.get("SEVAPATH_RAG_TOP_K", "5")),
-        vector_distance_threshold=float(
-            os.environ.get("SEVAPATH_RAG_DISTANCE_THRESHOLD", "0.5")
-        ),
+        corpus_resource=corpus_resource,
+        similarity_top_k=top_k,
+        vector_distance_threshold=threshold,
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
     )
 
 
