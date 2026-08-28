@@ -1,0 +1,26 @@
+# Never upload local dependencies, build output or tool state.
+node_modules/
+.next/
+.venv/
+.vercel/
+coverage/
+dist/
+**/__pycache__/
+**/.pytest_cache/
+*.py[cod]
+*.tsbuildinfo
+
+# Never upload credentials, local environment files, logs or raw downloads.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+rag-corpus/raw_sources_auto/
+claude-handoff/logs/
+
+# Release-only agent/tooling material is not required by the deployed runtime.
+.claude/
+python/.claude/
+sevapath-codex-continuation-kit/
+sevapath-finalizer-kit/

@@ -1,13 +1,13 @@
 # Codex mission state
 
-Last updated: 2026-08-28 12:47 IST  
+Last updated: 2026-08-28 12:54 IST  
 Deadline: 2026-08-28 20:00 IST  
 Branch: `codex/finalization`
 
 ## Current phase
 
-GitHub publication. The original repository state has been preserved in
-checkpoint commit `33178b1`; every local release gate is green.
+Mission complete. The repository is preserved and published, every release gate
+is green, and the public production deployment passed logged-out QA.
 
 ## Completed checks
 
@@ -39,7 +39,12 @@ checkpoint commit `33178b1`; every local release gate is green.
   360px layout/touch targets, keyboard navigation, and console/network review.
 - Live link check: all 11 allowlisted source URLs returned HTTP 200.
 - README, 227-word submission summary, timed two-minute demo script and judge
-  Q&A are complete. The deployment URL remains to be inserted after Vercel.
+  Q&A are complete.
+- Vercel authentication, production deployment and logged-out QA completed.
+- A provisional deployment whose CLI context included ignored raw downloads was
+  immediately removed. `.vercelignore` now excludes raw documents, credentials,
+  logs, caches, dependencies, build output and local agent tooling. The final
+  production deployment used the safe context.
 
 ## Files changed since checkpoint
 
@@ -69,20 +74,25 @@ checkpoint commit `33178b1`; every local release gate is green.
 ## Git status
 
 - Checkpoint commit: `33178b1`
-- Final commit: pending
-- GitHub: authenticated as `krish17kp`; `sevapath-india` is available; remote
-  creation/push pending final commit
+- Release commit: `02005eaba6b2cf3dcd65811a73f55ac04a61342b`
+- GitHub: public at `https://github.com/krish17kp/sevapath-india`; default branch
+  `main`; push succeeded
 
 ## Vercel status
 
-- Vercel CLI 59.9.1 is available but logged out; no local project link exists.
+- Vercel project: `sevapath-india`
+- Stable production URL: `https://sevapath-india.vercel.app`
+- Deployment: `dpl_HXUDfLYXUTms2jQ1wSb7DqMJdSbo`, production, Ready
+- Required environment variables: none
 
 ## Production QA status
 
-- Local optimized-build QA passed; public deployment QA pending authentication.
+- Public logged-out browser QA passed all Journeys A–F, sources, 360px mobile,
+  touch-target, keyboard, console and network checks.
+- `/api/health` returned HTTP 200 with the local adapter serving 10 briefs and
+  43 passages; `/` and `/sources` returned HTTP 200.
 
 ## Remaining blockers
 
-- Human Vercel authentication is required before a production project can be
-  created. Optional Vertex/Anthropic credentials are not required for the
-  deterministic local production path.
+- None. Optional Vertex/Anthropic credentials remain unconfigured by design and
+  are not required for the deterministic local production path.

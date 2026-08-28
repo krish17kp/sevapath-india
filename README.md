@@ -118,7 +118,7 @@ Release validation on 28 August 2026 passed:
 
 ## Deployment
 
-Public URL: **pending Vercel authentication and production deployment**.
+Public URL: **https://sevapath-india.vercel.app**
 
 No environment variables are required for deployment. `next.config.ts` traces
 the local corpus assets needed by the server runtime.
