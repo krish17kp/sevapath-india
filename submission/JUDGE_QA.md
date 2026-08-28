@@ -74,7 +74,9 @@ cannot safely react to those differences.
 ## How was Codex meaningfully used?
 
 Codex did not claim the pre-existing Claude implementation. It checkpointed and
-audited that work, found and fixed a negated PPO-authorization bug, added the
-human-review acknowledgement, created an end-to-end production browser suite,
-ran correctness, corpus, security, source-link, build and accessibility gates,
-prepared the release documentation, and handled publication and production QA.
+audited that work, implemented the official ADK VertexAiRagRetrieval serving path,
+expanded the RAG corpus to support English, Hindi, and Marathi guidance, hardened
+public source validation with page-level PDF extraction and SHA-256 provenance,
+refined deterministic routing and localized refusal boundaries, built production-browser
+automation, ran the full suite of 172 TypeScript tests and 53 retrieval eval assertions,
+and executed a flawless final release.

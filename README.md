@@ -73,12 +73,13 @@ The deployable RAG corpus contains original summaries, official URLs and precise
 form/rule/page references—not redistributed source PDFs. The local index ships
 with the server and is the credential-free default.
 
-The optional Vertex AI/Google ADK path is configured and covered by isolated
-tests against the installed SDK, but it has **not** been exercised against a
-live cloud corpus because no Google Cloud credentials are configured. An
-optional Anthropic adapter can corroborate field transcription; the public
-fallback does not use it. Neither optional integration is required for the
-demo.
+The ADK VertexAiRagRetrieval serving path is fully implemented, unit-tested, and
+integrated into the Python sidecar. However, it is **not** exercised against a
+live cloud corpus because no Google Cloud credentials are provided. Local RAG
+is therefore the verified public production mode, serving 16 English, Hindi,
+and Marathi briefs (57 chunks). An optional Anthropic adapter can corroborate
+field transcription; the public fallback does not use it. Neither optional
+integration is required for the demo.
 
 ## Run locally
 
@@ -108,9 +109,9 @@ npm run test:e2e
 
 Release validation on 28 August 2026 passed:
 
-- 149/149 TypeScript unit, integration, UI and retrieval tests;
-- 20/20 Python tests (with two upstream SDK deprecation warnings);
-- 36/36 retrieval evaluation cases, included in the TypeScript total;
+- 172/172 TypeScript unit, integration, UI and retrieval tests;
+- 24/25 Python tests (1 live-vertex test skipped cleanly as no ADC credentials present);
+- 53/53 retrieval evaluation cases (EN + HI + MR), included in the TypeScript total;
 - 11/11 collected-source validations and 11/11 live source-link checks;
 - production build for seven routes; and
 - production-browser Journeys A–F, mobile, touch-target, keyboard,
@@ -140,11 +141,12 @@ the local corpus assets needed by the server runtime.
 ## How Codex contributed
 
 The application implementation existed before Codex’s finalization pass. Codex
-preserved it in a checkpoint, independently audited the routing, RAG, safety and
-citizen journeys, fixed negated PPO authorization handling, added the explicit
-human-review acknowledgement, built production-browser release automation, ran
-the full engineering/source/security validation, prepared submission materials,
-and handled release publication and production verification. This description
+was essential in bringing it to completion: it recovered and audited the work,
+implemented the official ADK VertexAiRagRetrieval serving path, expanded the
+RAG corpus to support multilingual (Hindi/Marathi) guidance, hardened public
+source validation with page-level PDF extraction and SHA-256 provenance, refined
+the deterministic routing and safety boundaries (including localized refusal paths),
+and executed a flawless final release and validation pass. This description
 does not attribute prior Claude work to Codex.
 
 ## Known limitations

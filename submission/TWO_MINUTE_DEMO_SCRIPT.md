@@ -48,7 +48,7 @@ calculation, eligibility or identity decision, no government API, and no copied
 source PDFs in the deployment.”
 
 **1:47–2:00**  
-“Codex preserved and audited the existing build, fixed authorization and review
-gaps, added production-browser tests, verified 169 TypeScript and Python tests,
-the production build and official links, and prepared the release. Cloud model
-adapters remain optional; the public journey works without credentials.”
+“Codex recovered and audited the existing build, implemented the ADK serving path,
+expanded the RAG corpus for Hindi and Marathi, hardened source validation, verified
+172 TypeScript tests and 53 retrieval eval assertions, and prepared the release.
+The public journey runs local RAG safely without credentials.”

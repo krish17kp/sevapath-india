@@ -11,7 +11,7 @@ the verified route. The prototype reads three visibly fictional records,
 compares important fields without “fixing” them, flags unreadable information or
 name differences for human review, explains whether Form 12 or Form 10 applies,
 and produces a source-linked checklist and non-official preparation worksheet.
-Its knowledge assistant answers only from a checked corpus of official rules,
+Its knowledge assistant answers in English, Hindi, and Marathi only from a checked corpus of official rules,
 forms and RBI material, cites every supported answer, and refuses to calculate
 pension, determine eligibility or resolve identity.
 
