@@ -20,7 +20,7 @@ sources:
     issuer: Reserve Bank of India
     title: "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026 (Updated as on June 24, 2026)"
     url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0
-    accessed: 2026-08-27
+    accessed: 2026-08-28
 ---
 
 ## Which document this is

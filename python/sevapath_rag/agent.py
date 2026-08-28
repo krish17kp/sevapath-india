@@ -16,6 +16,7 @@ were tool calls. This agent's whole job is to look things up in the corpus.
 from __future__ import annotations
 
 import os
+import asyncio
 from typing import Any
 
 from .config import VertexConfig
@@ -67,7 +68,7 @@ def build_retrieval_tool(config: VertexConfig, corpus_name: str) -> Any:
     passes it back to `rag.retrieval_query`. Switch it when ADK accepts the
     agentplatform types.
     """
-    from google.adk.tools.retrieval import VertexAiRagRetrieval
+    from google.adk.tools.retrieval.vertex_ai_rag_retrieval import VertexAiRagRetrieval
     from vertexai import rag
 
     return VertexAiRagRetrieval(
@@ -77,6 +78,31 @@ def build_retrieval_tool(config: VertexConfig, corpus_name: str) -> Any:
         similarity_top_k=config.similarity_top_k,
         vector_distance_threshold=config.vector_distance_threshold,
     )
+
+
+async def execute_retrieval_tool_async(
+    config: VertexConfig, corpus_name: str, query: str
+) -> list[str]:
+    """Execute the exact ADK VertexAiRagRetrieval tool and return its passages.
+
+    The ADK implementation does not use ``tool_context`` in its Vertex RAG
+    ``run_async`` path, so no synthetic agent session is constructed here. The
+    returned strings still contain the corpus citation markers; service.py
+    resolves those markers against committed brief metadata before serving any
+    passage.
+    """
+    tool = build_retrieval_tool(config, corpus_name)
+    raw = await tool.run_async(args={"query": query}, tool_context=None)  # type: ignore[arg-type]
+    if not isinstance(raw, list):
+        return []
+    return [item.strip() for item in raw if isinstance(item, str) and item.strip()]
+
+
+def execute_retrieval_tool(
+    config: VertexConfig, corpus_name: str, query: str
+) -> list[str]:
+    """Synchronous bridge used by the small HTTP sidecar."""
+    return asyncio.run(execute_retrieval_tool_async(config, corpus_name, query))
 
 
 def build_agent(config: VertexConfig, corpus_name: str) -> Any:

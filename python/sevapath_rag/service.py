@@ -20,19 +20,15 @@ import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any
 
-from .agent import INSUFFICIENT_EVIDENCE_ANSWER
-from .citations import resolve
+from .agent import INSUFFICIENT_EVIDENCE_ANSWER, execute_retrieval_tool
+from .citations import resolve_any
 from .config import ConfigurationError, load_config
-from .corpus import ensure_corpus, retrieve
+from .corpus import ensure_corpus
 
 logger = logging.getLogger("sevapath.rag.service")
 
 MAX_BODY_BYTES = 8192
 MAX_QUERY_CHARS = 500
-
-#: Below this Vertex similarity score a context is not treated as evidence.
-MINIMUM_SCORE = float(os.environ.get("SEVAPATH_RAG_MIN_SCORE", "0.35"))
-
 
 def search(query: str, limit: int) -> dict[str, Any]:
     """Answers one question from the Vertex corpus.
@@ -44,23 +40,21 @@ def search(query: str, limit: int) -> dict[str, Any]:
     """
     config = load_config()
     corpus_name = ensure_corpus(config)
-    contexts = retrieve(config, corpus_name, query)
+    contexts = execute_retrieval_tool(config, corpus_name, query)
 
     passages: list[dict[str, Any]] = []
     for position, context in enumerate(contexts):
-        if context.score is not None and context.score < MINIMUM_SCORE:
-            continue
-        text, citations = resolve(context.text, context.source_display_name)
+        text, citations, source_display_name = resolve_any(context)
         if not citations or len(text) < 40:
             continue
         passages.append(
             {
-                "id": f"{context.source_display_name}#{position}",
-                "briefId": context.source_display_name.removesuffix(".md"),
-                "briefTitle": context.source_display_name,
+                "id": f"{source_display_name}#{position}",
+                "briefId": source_display_name.removesuffix(".md"),
+                "briefTitle": source_display_name,
                 "heading": "",
                 "text": text,
-                "score": context.score if context.score is not None else 0.0,
+                "score": 1.0,
                 "citations": [citation.to_dict() for citation in citations],
             }
         )
@@ -90,6 +84,7 @@ def search(query: str, limit: int) -> dict[str, Any]:
         "answer": "\n\n".join(passage["text"] for passage in passages),
         "passages": passages,
         "citations": flattened,
+        "retrievalEngine": "google-adk-vertex-ai-rag-retrieval",
     }
 
 
@@ -109,6 +104,7 @@ def health() -> dict[str, Any]:
         "available": True,
         "detail": f"Vertex RAG corpus reachable in {config.location}.",
         "corpus": corpus_name,
+        "retrievalEngine": "google-adk-vertex-ai-rag-retrieval",
     }
 
 

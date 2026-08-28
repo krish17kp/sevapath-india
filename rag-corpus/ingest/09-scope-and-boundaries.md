@@ -22,19 +22,19 @@ sources:
     issuer: Department of Pension and Pensioners' Welfare
     title: "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))"
     url: https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf
-    accessed: 2026-08-27
+    accessed: 2026-08-28
   PORTALTERMS:
     sourceId: PORTAL-TERMS
     issuer: Department of Pension and Pensioners' Welfare
     title: "Terms of Use / Disclaimer — Pensioners' Portal"
     url: https://pensionersportal.gov.in/disclaimer.aspx
-    accessed: 2026-08-27
+    accessed: 2026-08-28
   BRIEF:
     sourceId: HACKATHON-BRIEF
     issuer: Build What Moves India
     title: "Builder brief — Build What Moves India"
     url: https://buildwhatmovesindia.com/brief
-    accessed: 2026-08-27
+    accessed: 2026-08-28
 ---
 
 ## Amounts

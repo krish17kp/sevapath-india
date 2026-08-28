@@ -32,6 +32,9 @@ def config() -> VertexConfig:
 def test_retrieval_tool_targets_the_given_corpus(config: VertexConfig) -> None:
     tool = agent.build_retrieval_tool(config, CORPUS)
 
+    assert type(tool).__module__ == (
+        "google.adk.tools.retrieval.vertex_ai_rag_retrieval"
+    )
     assert tool.name == agent.RETRIEVAL_TOOL_NAME
     assert tool.vertex_rag_store.similarity_top_k == 5
     assert tool.vertex_rag_store.rag_resources is not None
@@ -62,3 +65,20 @@ def test_insufficient_evidence_wording_is_exact() -> None:
         agent.INSUFFICIENT_EVIDENCE_ANSWER
         == "I could not verify this from the current official corpus."
     )
+
+
+def test_exact_adk_tool_run_async_is_executed(
+    config: VertexConfig, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    calls: list[dict[str, object]] = []
+
+    class FakeExactTool:
+        async def run_async(self, **kwargs: object) -> list[str]:
+            calls.append(kwargs)
+            return ["Grounded passage. [RULE79: Rule 79(2)(a)(ii)]"]
+
+    monkeypatch.setattr(agent, "build_retrieval_tool", lambda *_: FakeExactTool())
+    result = agent.execute_retrieval_tool(config, CORPUS, "Which form?")
+
+    assert result == ["Grounded passage. [RULE79: Rule 79(2)(a)(ii)]"]
+    assert calls == [{"args": {"query": "Which form?"}, "tool_context": None}]

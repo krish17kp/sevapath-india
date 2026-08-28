@@ -5,6 +5,7 @@ import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
+import { assertSourceProvenance } from "./collection_utils.mjs";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const corpusRoot = path.resolve(scriptDir, "..");
@@ -17,6 +18,13 @@ const manifest = JSON.parse(
 );
 
 const errors = [];
+for (const source of config.sources) {
+  try {
+    assertSourceProvenance({ ...source, provenance: config.provenance?.[source.id] });
+  } catch (error) {
+    errors.push(error instanceof Error ? error.message : String(error));
+  }
+}
 const configuredIds = new Set(config.sources.map((source) => source.id));
 const resultIds = new Set(manifest.results.map((result) => result.id));
 
@@ -60,8 +68,43 @@ for (const result of manifest.results) {
   if (result.kind === "pdf" && primary.subarray(0, 5).toString() !== "%PDF-") {
     errors.push(`${result.id}: invalid PDF signature`);
   }
+  if (result.kind === "pdf" && !/^application\/pdf(?:\s*;|$)/i.test(result.contentType || "")) {
+    errors.push(`${result.id}: invalid PDF content type`);
+  }
+  if (result.kind === "pdf") {
+    const pagesFile = result.files.find((name) => name.endsWith(".pages.txt"));
+    const pagesText = pagesFile
+      ? await readFile(path.join(rawDir, pagesFile), "utf8").catch(() => "")
+      : "";
+    if (!pagesFile || !pagesText.includes("===== PAGE 1 =====")) {
+      errors.push(`${result.id}: page-bounded PDF extraction is missing`);
+    }
+    if (digest(Buffer.from(pagesText, "utf8")) !== result.extractedTextSha256) {
+      errors.push(`${result.id}: extracted text checksum mismatch`);
+    }
+    if (!Number.isInteger(result.pageCount) || result.pageCount < 1 || result.ocrUsed !== false) {
+      errors.push(`${result.id}: invalid PDF extraction metadata`);
+    }
+  }
   if (result.kind === "html" && Number(result.textCharacters || 0) < 250) {
     errors.push(`${result.id}: insufficient extracted text`);
+  }
+  if (!result.contentType) errors.push(`${result.id}: content type is missing`);
+}
+
+const seenHashes = new Map();
+for (const result of manifest.results.filter((item) => item.status === "success")) {
+  const previous = seenHashes.get(result.sha256);
+  if (previous) errors.push(`${result.id}: duplicates ${previous} by checksum`);
+  seenHashes.set(result.sha256, result.id);
+}
+
+for (const source of config.sources) {
+  const provenance = config.provenance[source.id];
+  for (const filename of provenance.derivedBriefs) {
+    const brief = path.join(corpusRoot, "ingest", filename);
+    const briefStat = await stat(brief).catch(() => null);
+    if (!briefStat?.isFile()) errors.push(`${source.id}: missing derived brief ${filename}`);
   }
 }
 
@@ -76,4 +119,3 @@ console.log(`PASS: ${manifest.results.length} public sources validated`);
 function digest(buffer) {
   return createHash("sha256").update(buffer).digest("hex");
 }
-

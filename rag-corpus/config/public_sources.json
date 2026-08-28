@@ -2,11 +2,104 @@
   "userAgent": "SevaPathResearchBot/1.0 (hackathon prototype; public official sources only)",
   "minimumDelayMs": 1800,
   "maximumBytes": 30000000,
+  "maximumRetries": 2,
+  "retryBaseDelayMs": 800,
+  "maximumConcurrency": 1,
   "allowedHosts": [
     "pensionersportal.gov.in",
     "www.rbi.org.in",
     "buildwhatmovesindia.com"
   ],
+  "provenance": {
+    "PENSION-FORMS-LIST": {
+      "officialTitle": "Downloads: Application/Claim Forms",
+      "documentDate": "2022-10-13 (page footer: Last Updated/Reviewed)",
+      "rightsStatus": "Government page; direct linking is permitted by the portal terms. Summary only; no raw deployment.",
+      "rawDeploymentPermitted": false,
+      "relevantLocators": ["Current Form 10 and Form 12 entries", "Archives section: Form 14"],
+      "derivedBriefs": ["01-form12-pda-route.md", "02-form10-hoo-route.md", "05-form14-archived.md", "10-source-hierarchy.md", "13-form14-archived-hi-mr.md"]
+    },
+    "CCS2021-NOTIFICATION": {
+      "officialTitle": "Central Civil Services (Pension) Rules, 2021 (Gazette of India, Extraordinary, Part II Sec. 3(i))",
+      "documentDate": "2021 (Gazette notification)",
+      "rightsStatus": "Gazette notification; linked and cited by rule/page. Summary only; no raw deployment.",
+      "rawDeploymentPermitted": false,
+      "relevantLocators": ["Rule 79, printed pages 176-178 / PDF pages 55-57", "Rule 80, printed pages 178-180 / PDF pages 57-59"],
+      "derivedBriefs": ["01-form12-pda-route.md", "02-form10-hoo-route.md", "03-format9-bank-undertaking.md", "04-ccs-rule79-flow.md", "05-form14-archived.md", "07-form12-document-checklist.md", "08-name-consistency.md", "09-scope-and-boundaries.md", "10-source-hierarchy.md", "11-form12-route-hi-mr.md", "12-form10-route-hi-mr.md", "14-form12-checklist-hi-mr.md"]
+    },
+    "CCS2021-COMPENDIUM": {
+      "officialTitle": "Central Civil Services (Pension) Rules, 2021 — compendium",
+      "documentDate": "2021",
+      "rightsStatus": "Departmental compendium used only to cross-check the Gazette notification; no raw deployment.",
+      "rawDeploymentPermitted": false,
+      "relevantLocators": ["Rule 79 cross-check"],
+      "derivedBriefs": []
+    },
+    "FORM10-2021": {
+      "officialTitle": "Form 10 — Application to the Head of Office for Family Pension",
+      "documentDate": "2021 (form issued under CCS (Pension) Rules, 2021)",
+      "rightsStatus": "Official form; linked for download and summarized. No raw deployment.",
+      "rawDeploymentPermitted": false,
+      "relevantLocators": ["Page 1 header", "Page 3 document list, including item 19"],
+      "derivedBriefs": ["02-form10-hoo-route.md", "08-name-consistency.md", "12-form10-route-hi-mr.md", "15-name-consistency-hi-mr.md"]
+    },
+    "FORM12-2021": {
+      "officialTitle": "Form 12 — Application to Pension Disbursing Authority for commencement of family pension",
+      "documentDate": "2021 (form issued under CCS (Pension) Rules, 2021)",
+      "rightsStatus": "Official form; linked for download and summarized. No raw deployment.",
+      "rawDeploymentPermitted": false,
+      "relevantLocators": ["Page 1 header and fields", "Page 2 document list"],
+      "derivedBriefs": ["01-form12-pda-route.md", "07-form12-document-checklist.md", "11-form12-route-hi-mr.md", "14-form12-checklist-hi-mr.md"]
+    },
+    "FORMAT9-2021": {
+      "officialTitle": "Format 9 — Undertaking to the pension disbursing bank",
+      "documentDate": "2021 (format issued under CCS (Pension) Rules, 2021)",
+      "rightsStatus": "Official format; linked for download and summarized. No raw deployment.",
+      "rawDeploymentPermitted": false,
+      "relevantLocators": ["Page 1 header and body paragraphs 1-2"],
+      "derivedBriefs": ["03-format9-bank-undertaking.md"]
+    },
+    "FAQ-CIVIL-2018": {
+      "officialTitle": "Frequently Asked Questions (FAQs) on Pension Policy Issues — Central Civil Pensioners",
+      "documentDate": "2018 or earlier (predates the 2021 Rules)",
+      "rightsStatus": "Departmental FAQ; summarized only to identify superseded Form 14 guidance. No raw deployment.",
+      "rawDeploymentPermitted": false,
+      "relevantLocators": ["Page 17: former Form 14 instruction"],
+      "derivedBriefs": ["05-form14-archived.md", "10-source-hierarchy.md", "13-form14-archived-hi-mr.md"]
+    },
+    "PENSIONER-GUIDELINES": {
+      "officialTitle": "Guidelines for Pensioners",
+      "documentDate": "Not stated on page",
+      "rightsStatus": "Government page; direct linking permitted by portal terms. Summary only; no raw deployment.",
+      "rawDeploymentPermitted": false,
+      "relevantLocators": ["PPO verification and Pension Disbursing Authority guidance"],
+      "derivedBriefs": ["08-name-consistency.md"]
+    },
+    "RBI2026-MD": {
+      "officialTitle": "Reserve Bank of India [Disbursement of Government Pension by Agency Banks (ABs)] Directions, 2026",
+      "documentDate": "2026-04-30; updated 2026-06-24",
+      "rightsStatus": "Public RBI direction; linked and summarized by paragraph. No raw deployment.",
+      "rawDeploymentPermitted": false,
+      "relevantLocators": ["Chapter I paragraphs 1 and 3", "Chapter VII paragraphs 21-24", "Chapter III(A) paragraph 8(i)"],
+      "derivedBriefs": ["06-rbi-2026-bank-handling.md", "16-bank-guidance-hi-mr.md"]
+    },
+    "PORTAL-TERMS": {
+      "officialTitle": "Terms of Use / Disclaimer — Pensioners' Portal",
+      "documentDate": "Not stated on page",
+      "rightsStatus": "Rights-review source; permits direct linking and disallows framing. No raw deployment.",
+      "rawDeploymentPermitted": false,
+      "relevantLocators": ["Original rules disclaimer", "Linking and framing terms"],
+      "derivedBriefs": ["09-scope-and-boundaries.md"]
+    },
+    "HACKATHON-BRIEF": {
+      "officialTitle": "Builder brief — Build What Moves India",
+      "documentDate": "Not stated on page",
+      "rightsStatus": "Public organizer brief used for project conduct; linked and summarized. No raw deployment.",
+      "rawDeploymentPermitted": false,
+      "relevantLocators": ["Synthetic-data and prototype conduct requirements"],
+      "derivedBriefs": ["09-scope-and-boundaries.md"]
+    }
+  },
   "sources": [
     {
       "id": "PENSION-FORMS-LIST",
@@ -14,7 +107,8 @@
       "issuer": "Department of Pension and Pensioners' Welfare",
       "url": "https://pensionersportal.gov.in/Forms/Applicationforms/mapplication.aspx",
       "kind": "html",
-      "corpusUse": "routing"
+      "corpusUse": "routing",
+      "necessaryForJourney": true
     },
     {
       "id": "CCS2021-NOTIFICATION",
@@ -22,7 +116,8 @@
       "issuer": "Department of Pension and Pensioners' Welfare",
       "url": "https://pensionersportal.gov.in/Document/CCS-Pension-Rules%202021-English.pdf",
       "kind": "pdf",
-      "corpusUse": "primary-law"
+      "corpusUse": "primary-law",
+      "necessaryForJourney": true
     },
     {
       "id": "CCS2021-COMPENDIUM",
@@ -30,7 +125,8 @@
       "issuer": "Department of Pension and Pensioners' Welfare",
       "url": "https://pensionersportal.gov.in/Document/CSS_PensionRules_2021_Book_Eng.pdf",
       "kind": "pdf",
-      "corpusUse": "cross-check"
+      "corpusUse": "cross-check",
+      "necessaryForJourney": true
     },
     {
       "id": "FORM10-2021",
@@ -38,7 +134,8 @@
       "issuer": "Department of Pension and Pensioners' Welfare",
       "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form10.pdf",
       "kind": "pdf",
-      "corpusUse": "alternative-route"
+      "corpusUse": "alternative-route",
+      "necessaryForJourney": true
     },
     {
       "id": "FORM12-2021",
@@ -46,7 +143,8 @@
       "issuer": "Department of Pension and Pensioners' Welfare",
       "url": "https://pensionersportal.gov.in/Forms/pension_new_forms/Form12.pdf",
       "kind": "pdf",
-      "corpusUse": "primary-route"
+      "corpusUse": "primary-route",
+      "necessaryForJourney": true
     },
     {
       "id": "FORMAT9-2021",
@@ -54,7 +152,8 @@
       "issuer": "Department of Pension and Pensioners' Welfare",
       "url": "https://pensionersportal.gov.in/Forms/pension_new_format/Format9.pdf",
       "kind": "pdf",
-      "corpusUse": "primary-route"
+      "corpusUse": "primary-route",
+      "necessaryForJourney": true
     },
     {
       "id": "FAQ-CIVIL-2018",
@@ -62,7 +161,8 @@
       "issuer": "Department of Pension and Pensioners' Welfare",
       "url": "https://pensionersportal.gov.in/FAQ_Civil.pdf",
       "kind": "pdf",
-      "corpusUse": "background-only"
+      "corpusUse": "background-only",
+      "necessaryForJourney": true
     },
     {
       "id": "PENSIONER-GUIDELINES",
@@ -70,7 +170,8 @@
       "issuer": "Department of Pension and Pensioners' Welfare",
       "url": "https://pensionersportal.gov.in/guidelines.aspx",
       "kind": "html",
-      "corpusUse": "guidance"
+      "corpusUse": "guidance",
+      "necessaryForJourney": true
     },
     {
       "id": "RBI2026-MD",
@@ -78,7 +179,8 @@
       "issuer": "Reserve Bank of India",
       "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13442&Mode=0",
       "kind": "html",
-      "corpusUse": "bank-direction"
+      "corpusUse": "bank-direction",
+      "necessaryForJourney": true
     },
     {
       "id": "PORTAL-TERMS",
@@ -86,7 +188,8 @@
       "issuer": "Department of Pension and Pensioners' Welfare",
       "url": "https://pensionersportal.gov.in/disclaimer.aspx",
       "kind": "html",
-      "corpusUse": "rights-policy"
+      "corpusUse": "rights-policy",
+      "necessaryForJourney": true
     },
     {
       "id": "HACKATHON-BRIEF",
@@ -94,8 +197,8 @@
       "issuer": "Build What Moves India",
       "url": "https://buildwhatmovesindia.com/brief",
       "kind": "html",
-      "corpusUse": "project-policy"
+      "corpusUse": "project-policy",
+      "necessaryForJourney": true
     }
   ]
 }
-

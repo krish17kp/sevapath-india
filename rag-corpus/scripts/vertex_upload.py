@@ -16,7 +16,9 @@ Required environment:
 from __future__ import annotations
 
 import argparse
+import fcntl
 import sys
+from contextlib import contextmanager
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
@@ -69,26 +71,31 @@ def main() -> int:
         return 2
 
     # Imported here so --dry-run works without the heavy SDK installed.
-    from sevapath_rag.corpus import ensure_corpus, retrieve, upload_briefs
+    from sevapath_rag.agent import execute_retrieval_tool
+    from sevapath_rag.corpus import ensure_corpus, upload_briefs
 
     print(f"\nProject: {config.project}   Location: {config.location}")
-    corpus_name = ensure_corpus(config)
-    print(f"Corpus:  {corpus_name}")
+    with mutation_lock():
+        corpus_name = ensure_corpus(config)
+        print(f"Corpus:  {corpus_name}")
 
-    uploaded = upload_briefs(config, corpus_name)
-    print(f"\nUploaded {len(uploaded)} briefs.")
+        sync = upload_briefs(config, corpus_name)
+    print(
+        f"\nCorpus sync: {len(sync.uploaded)} uploaded, {len(sync.skipped)} unchanged, "
+        f"{len(sync.deleted)} stale removed, {len(sync.indexed)} indexed."
+    )
 
     if args.skip_smoke_test:
         return 0
 
     print(f"\nRetrieval smoke test:\n  Q: {SMOKE_TEST_QUERY}")
-    contexts = retrieve(config, corpus_name, SMOKE_TEST_QUERY)
+    contexts = execute_retrieval_tool(config, corpus_name, SMOKE_TEST_QUERY)
     if not contexts:
         print("  FAIL: retrieval returned no contexts.", file=sys.stderr)
         return 3
     for context in contexts[:3]:
-        preview = context.text[:160].replace("\n", " ")
-        print(f"  [{context.score}] {context.source_display_name}: {preview}...")
+        preview = context[:160].replace("\n", " ")
+        print(f"  {preview}...")
 
     print(
         "\nDone. Point the web application at this corpus with:\n"
@@ -96,6 +103,21 @@ def main() -> int:
         "  SEVAPATH_RETRIEVAL_ADAPTER=vertex"
     )
     return 0
+
+
+@contextmanager
+def mutation_lock():
+    """Prevent concurrent mutation runs against a corpus from this checkout."""
+    lock_path = Path(__file__).resolve().parents[1] / ".vertex-mutation.lock"
+    with lock_path.open("w", encoding="utf-8") as handle:
+        try:
+            fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError as error:
+            raise RuntimeError("Another Vertex corpus mutation is already running") from error
+        try:
+            yield
+        finally:
+            fcntl.flock(handle, fcntl.LOCK_UN)
 
 
 if __name__ == "__main__":

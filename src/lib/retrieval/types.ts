@@ -1,4 +1,5 @@
 /** Shared vocabulary for both retrieval adapters. */
+import { detectQuestionLanguage } from "./language";
 
 export interface Citation {
   /** Allowlist id of the official document, e.g. `FORM12-2021`. */
@@ -67,3 +68,13 @@ export interface RetrievalAdapter {
  */
 export const INSUFFICIENT_EVIDENCE_ANSWER =
   "I could not verify this from the current official corpus.";
+
+export const INSUFFICIENT_EVIDENCE_ANSWERS = {
+  en: INSUFFICIENT_EVIDENCE_ANSWER,
+  hi: "उपलब्ध आधिकारिक स्रोतों से इसकी पुष्टि नहीं हो सकी।",
+  mr: "उपलब्ध अधिकृत स्रोतांवरून याची पुष्टी करता आली नाही."
+} as const;
+
+export function insufficientEvidenceAnswer(question: string): string {
+  return INSUFFICIENT_EVIDENCE_ANSWERS[detectQuestionLanguage(question)];
+}
